@@ -22,22 +22,20 @@ function Products() {
     <Grid container direction="column" spacing={2}>
       <Grid item container justifyContent="space-between" alignItems="center">
         <Grid item>
-          <Typography variant="h5">Products</Typography>
-        </Grid>
-        <Grid item>
           <Button color="primary" component={Link} to="/products/new">
             Add
           </Button>
         </Grid>
       </Grid>
 
-      <Grid item container direction="row" spacing={1}>
+      <Grid item container direction="row" spacing={2} justifyContent="center">
         {products?.map((product) => (
           <ProductItem
             key={product.id}
             id={product.id}
             title={product.title}
             price={product.price}
+            image={product.image}
           />
         ))}
       </Grid>

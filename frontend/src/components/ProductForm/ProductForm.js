@@ -1,28 +1,38 @@
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import React, { useState } from "react";
 
-function ProductForm({onSubmit}) {
+function ProductForm({ onSubmit }) {
   const [state, setState] = useState({
     title: "",
     price: "",
     description: "",
+    image: "",
   });
 
   const submitForHandler = (e) => {
     e.preventDefault();
-    onSubmit({...state})
+    const formData = new FormData();
+    Object.keys(state).forEach(key => {
+        formData.append(key, state[key])
+    })
+    onSubmit(formData);
   };
 
   const inputChangeHandler = (e) => {
     const { name, value } = e.target;
-    setState((prev) => {
-      return { ...prev, [name]: value };
-    });
+    setState((prev) => ({ ...prev, [name]: value }));
   };
+
+  const fileChangeHandler = (e) => {
+    const name = e.target.name;
+    const file = e.target.files[0];
+    setState((prev) => ({ ...prev, [name]: file }));
+  };
+
   return (
     <form autoComplete="off" onSubmit={submitForHandler}>
       <Grid container justifyContent="center">
@@ -77,6 +87,14 @@ function ProductForm({onSubmit}) {
                   label="Description"
                   value={state.description}
                   onChange={inputChangeHandler}
+                />
+              </Grid>
+
+              <Grid item>
+                <TextField
+                  type="file"
+                  name="image"
+                  onChange={fileChangeHandler}
                 />
               </Grid>
 
