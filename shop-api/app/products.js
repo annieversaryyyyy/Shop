@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-  const product = fileDb.getItem(req.params.is);
+  const product = fileDb.getItem(req.params.id);
   res.send(product);
 });
 
