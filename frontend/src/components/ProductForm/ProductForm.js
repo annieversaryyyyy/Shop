@@ -55,9 +55,8 @@ function ProductForm({ onSubmit }) {
             <Grid container direction="column" spacing={3}>
               <Grid item>
                 <TextField
-                  fullWidth
+                  required
                   id="title"
-                  variant="outlined"
                   name="title"
                   label="Title"
                   value={state.title}
@@ -67,7 +66,7 @@ function ProductForm({ onSubmit }) {
 
               <Grid item>
                 <TextField
-                  fullWidth
+                  required
                   id="price"
                   name="price"
                   label="Price"
@@ -79,11 +78,10 @@ function ProductForm({ onSubmit }) {
 
               <Grid item>
                 <TextField
-                  fullWidth
                   id="description"
+                  required
                   multiline
                   rows={3}
-                  variant="outlined"
                   name="description"
                   label="Description"
                   value={state.description}

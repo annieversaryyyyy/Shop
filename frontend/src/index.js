@@ -4,9 +4,11 @@ import { BrowserRouter } from "react-router-dom";
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import { thunk } from "redux-thunk";
 import { Provider } from "react-redux";
+import { ThemeProvider } from "@mui/material/styles";
 import productsReducer from "./store/reducers/productsReducer";
-import "./index.css";
 import App from "./App";
+import theme from "./theme";
+import "./index.css";
 
 const composeEnhancers = window.REDUX_DEVTOOLS_EXTENSION_COMPOSE || compose;
 
@@ -21,9 +23,11 @@ const store = createStore(
 
 const app = (
   <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ThemeProvider>
   </Provider>
 );
 

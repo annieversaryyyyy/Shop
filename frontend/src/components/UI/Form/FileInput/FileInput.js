@@ -44,11 +44,7 @@ const FileInput = ({ onChange, name, label, error }) => {
           />
         </Grid>
         <Grid item>
-          <Button
-            variant="contained"
-            onClick={activateInput}
-            sx={{ bgcolor: "#576235", "&:hover": { bgcolor: "#576235" } }}
-          >
+          <Button variant="contained" onClick={activateInput}>
             Browse
           </Button>
         </Grid>
