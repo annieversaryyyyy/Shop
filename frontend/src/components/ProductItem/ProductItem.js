@@ -19,7 +19,7 @@ function ProductItem({ id, title, price, image }) {
   }
 
   return (
-    <Grid item xs={12} display="flex" justifyContent="center">
+    <Grid item xs={12} lg={3} display="flex" justifyContent="center">
       <Card
         sx={{
           maxWidth: 420,

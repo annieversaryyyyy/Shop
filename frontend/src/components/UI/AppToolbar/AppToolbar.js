@@ -23,7 +23,7 @@ function AppToolbar() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Toolbar/>
+      <Toolbar />
     </>
   );
 }

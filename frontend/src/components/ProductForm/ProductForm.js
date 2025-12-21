@@ -4,6 +4,7 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import FileInput from "../UI/Form/FileInput/FileInput";
 
 function ProductForm({ onSubmit }) {
   const [state, setState] = useState({
@@ -16,9 +17,9 @@ function ProductForm({ onSubmit }) {
   const submitForHandler = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    Object.keys(state).forEach(key => {
-        formData.append(key, state[key])
-    })
+    Object.keys(state).forEach((key) => {
+      formData.append(key, state[key]);
+    });
     onSubmit(formData);
   };
 
@@ -35,7 +36,7 @@ function ProductForm({ onSubmit }) {
 
   return (
     <form autoComplete="off" onSubmit={submitForHandler}>
-      <Grid container justifyContent="center">
+      <Grid container justifyContent="center" mt={3} mb={3}>
         <Grid item xs={12} sm={12} md={10} lg={8}>
           <Paper
             elevation={6}
@@ -47,7 +48,7 @@ function ProductForm({ onSubmit }) {
               mx: "auto",
             }}
           >
-            <Typography variant="h5" fontWeight={700} textAlign="center" mb={3}>
+            <Typography variant="h5" mb={3} fontWeight={700} textAlign="center">
               Add new item
             </Typography>
 
@@ -91,7 +92,8 @@ function ProductForm({ onSubmit }) {
               </Grid>
 
               <Grid item>
-                <TextField
+                <FileInput
+                  label="Image"
                   type="file"
                   name="image"
                   onChange={fileChangeHandler}
