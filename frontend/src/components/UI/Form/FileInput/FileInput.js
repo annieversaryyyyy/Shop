@@ -14,7 +14,6 @@ const FileInput = ({ onChange, name, label, error }) => {
     } else {
       setFilename("");
     }
-
     onChange(e);
   };
 
