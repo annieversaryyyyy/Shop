@@ -1,6 +1,7 @@
-const mongoose = require('mongoose');
-
+const mongoose = require("mongoose");
+const idValidator = require("mongoose-id-validator");
 const Schema = mongoose.Schema;
+
 const ProductSchema = new Schema({
   title: {
     type: String,
@@ -10,9 +11,18 @@ const ProductSchema = new Schema({
     type: Number,
     required: true,
   },
-  description: String,
+  category: {
+    type: Schema.Types.ObjectId,
+    ref: "Category",
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
   image: String,
 });
 
-const Product = mongoose.model('Product', ProductSchema);
+ProductSchema.plugin(idValidator, { message : "Bad ID value for {PATH}" });
+const Product = mongoose.model("Product", ProductSchema);
 module.exports = Product;

@@ -26,12 +26,14 @@ router.get("/", async (req, res) => {
     sort.price = -1;
   } //сортировка по убыванию
 
-  if(req.query.filter === 'image'){
-    query.image = {$ne: null};
+  if (req.query.filter === "image") {
+    query.image = { $ne: null };
   }
 
   try {
-    const products = await Product.find(query).sort(sort);
+    const products = await Product.find(query)
+      .sort(sort)
+      .populate("category", "title description");
     res.send(products);
   } catch {
     res.sendStatus(500);
@@ -52,13 +54,15 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/", upload.single("image"), async (req, res) => {
-  if (!req.body.title || !req.body.description || !req.body.price) {
+  const { title, price, category, description } = req.body;
+
+  if (!title || !description || !price || !category) {
     return res.status(400).send({ error: "data not valid" });
   }
   const productData = {
-    title: req.body.title,
-    price: req.body.price,
-    description: req.body.description,
+    title,
+    price,
+    description,
     image: null,
   };
 
@@ -70,8 +74,8 @@ router.post("/", upload.single("image"), async (req, res) => {
     const product = new Product(productData);
     await product.save();
     res.send(product);
-  } catch {
-    res.sendStatus(500);
+  } catch (e) {
+    res.status(400).send({ error: e.errors });
   }
 });
 
