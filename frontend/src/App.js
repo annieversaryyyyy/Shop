@@ -4,7 +4,9 @@ import Products from "./containers/Products/Products";
 import Product from "./containers/Product/Product";
 import NewProduct from "./containers/NewProduct/NewProduct";
 import Register from "./containers/Register/Register";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Login from "./containers/Login/Login";
 
 function App() {
   return (
@@ -14,7 +16,9 @@ function App() {
         <Route path="/products/new" element={<NewProduct />} />
         <Route path="/products/:id" element={<Product />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
+      <ToastContainer position="top-right" autoClose={3000} />
     </Layout>
   );
 }

@@ -12,16 +12,10 @@ import {
   Typography,
 } from "@mui/material";
 import { toast } from "react-toastify";
-import "./Register.css";
-
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  clearRegisterErrors,
-  clearRegisterSuccess,
-  registerUser,
-} from "../../store/actions/usersActions";
 import FormElement from "../../components/UI/Form/FormElement/FormElement";
+import { clearLoginSuccess, loginUser } from "../../store/actions/usersActions";
 import { useNavigate } from "react-router-dom";
 
 const theme = createTheme({
@@ -33,27 +27,11 @@ const theme = createTheme({
   },
 });
 
-function Register() {
+function Login() {
   const dispatch = useDispatch();
-  const registerSuccess = useSelector((state) => state.users.registerSuccess);
-  const registerError = useSelector((state) => state.users.registerError);
+  const loginSuccess = useSelector((state) => state.users.loginSuccess);
+  const loginError = useSelector((state) => state.users.loginError);
   const navigate = useNavigate();
-  useEffect(() => {
-    if (registerSuccess) {
-      toast.success("Registration successful");
-      dispatch(clearRegisterSuccess());
-      navigate("/");
-    }
-  }, [registerSuccess, dispatch, navigate]);
-
- useEffect(() => {
-    if (registerError) {
-      setErrors((prev) => ({
-        ...prev,
-        ...registerError,
-      }));
-    }
-  }, [registerError]);
 
   const [user, setUser] = useState({
     username: "",
@@ -64,6 +42,30 @@ function Register() {
     username: "",
     password: "",
   });
+
+  useEffect(() => {
+    if (loginSuccess) {
+      toast.success("Login successful");
+      dispatch(clearLoginSuccess());
+      navigate("/");
+    }
+  }, [loginSuccess, dispatch, navigate]);
+
+  useEffect(() => {
+    if (loginError) {
+      if (loginError.username || loginError.password) {
+        setErrors((prev) => ({
+          ...prev,
+          ...loginError,
+        }));
+      } else if (loginError.error) {
+        setErrors({
+          username: loginError.error,
+          password: "",
+        });
+      }
+    }
+  }, [loginError]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -79,36 +81,14 @@ function Register() {
     }));
   };
 
-  const validateInputs = () => {
-    const newErrors = {
-      username: "",
-      password: "",
-    };
-
-    if (!user.username.trim()) {
-      newErrors.username = "Name is required.";
-    }
-
-    if (!user.password || user.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters long.";
-    }
-
-    setErrors(newErrors);
-
-    return !newErrors.username && !newErrors.password;
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!validateInputs()) return;
-    dispatch(clearRegisterErrors());
-    dispatch(registerUser({ ...user }));
-    console.log(user);
+    dispatch(loginUser({ ...user }));
   };
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="registerContainer">
+      <div className="loginContainer">
         <CssBaseline />
         <Box
           sx={{
@@ -140,9 +120,8 @@ function Register() {
             }}
           >
             <Typography variant="h4" textAlign="center">
-              Sign up
+              Sign in
             </Typography>
-
             <Box component="form" onSubmit={handleSubmit}>
               <FormControl fullWidth margin="normal">
                 <FormLabel sx={{ color: "white" }}>Username</FormLabel>
@@ -177,7 +156,7 @@ function Register() {
                 variant="contained"
                 sx={{ mt: 2 }}
               >
-                Sign up
+                Sign in
               </Button>
             </Box>
 
@@ -193,14 +172,9 @@ function Register() {
               or
             </Divider>
 
-            <Button fullWidth variant="outlined" type="submit">
-              Sign up with Google
-            </Button>
-
             <Typography textAlign="center" sx={{ mt: 2 }}>
-              Already have an account?{" "}
-              <Link component={RouterLink} to="/login" underline="hover">
-                Sign in
+              <Link component={RouterLink} to="/register" underline="hover">
+                Sign up
               </Link>
             </Typography>
           </Card>
@@ -210,4 +184,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default Login;
