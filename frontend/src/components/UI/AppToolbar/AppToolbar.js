@@ -1,11 +1,15 @@
-import { Button } from "@mui/material";
+import { Grid } from "@mui/material";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import React from "react";
-import { Link } from "react-router-dom";
+import Anonymous from "../Menu/Anonymous";
+import UserMenu from "../Menu/UserMenu";
 
 function AppToolbar() {
+  const user = useSelector((state) => state.users.user);
+  console.log(user);
   return (
     <>
       <AppBar
@@ -16,26 +20,29 @@ function AppToolbar() {
         }}
       >
         <Toolbar>
-          <Typography
-            variant="h5"
-            sx={{
-              fontWeight: 600,
-              "& a": {
-                color: "white",
-                textDecoration: "none",
-              },
-            }}
+          <Grid
+            container
+            justifyContent="space-between"
+            alignItems="center"
+            sx={{ width: "100%" }}
           >
-            <Link to="/">Jewelry shop Mistica</Link>
-          </Typography>
-          <Button
-            component={Link}
-            to="/register"
-            sx={{ ml: "auto", color: "white", borderColor: "white" }}
-            variant="outlined"
-          >
-            Sign Up
-          </Button>
+            <Grid item>
+              <Typography
+                variant="h5"
+                sx={{
+                  fontWeight: 600,
+                  "& a": {
+                    color: "white",
+                    textDecoration: "none",
+                  },
+                }}
+              >
+                <Link to="/">Jewelry shop Mistica</Link>
+              </Typography>
+            </Grid>
+
+            <Grid item> {user ? <UserMenu user={user} /> : <Anonymous />}</Grid>
+          </Grid>
         </Toolbar>
       </AppBar>
       <Toolbar />

@@ -1,5 +1,5 @@
 import {
-    CLEAR_LOGIN_ERRORS,
+  CLEAR_LOGIN_ERRORS,
   CLEAR_LOGIN_SUCCESS,
   CLEAR_REGISTER_ERRORS,
   CLEAR_REGISTER_SUCCESS,
@@ -26,7 +26,12 @@ const usersReducer = (state = initialState, action) => {
     case REGISTER_USER_REQUEST:
       return { ...state, registerLoading: true };
     case REGISTER_USER_SUCCESS:
-      return { ...state, registerLoading: false, registerSuccess: true };
+      return {
+        ...state,
+        registerLoading: false,
+        registerSuccess: true,
+        user: action.payload,
+      };
     case REGISTER_USER_FAILURE:
       return {
         ...state,
@@ -42,7 +47,12 @@ const usersReducer = (state = initialState, action) => {
     case LOGIN_USER_REQUEST:
       return { ...state, loginLoading: true };
     case LOGIN_USER_SUCCESS:
-      return { ...state, loginLoading: false, loginSuccess: true };
+      return {
+        ...state,
+        loginLoading: false,
+        loginSuccess: true,
+        user: action.payload,
+      };
     case LOGIN_USER_FAILURE:
       return {
         ...state,

@@ -12,9 +12,11 @@ export const LOGIN_USER_FAILURE = "LOGIN_USER_FAILURE";
 export const CLEAR_LOGIN_ERRORS = "CLEAR_LOGIN_ERRORS";
 export const CLEAR_LOGIN_SUCCESS = "CLEAR_LOGIN_SUCCESS";
 
-
 const registerUserRequest = () => ({ type: REGISTER_USER_REQUEST });
-const registerUserSuccess = () => ({ type: REGISTER_USER_SUCCESS });
+const registerUserSuccess = (user) => ({
+  type: REGISTER_USER_SUCCESS,
+  payload: user,
+});
 const registerUserFailure = (error) => ({
   type: REGISTER_USER_FAILURE,
   payload: error,
@@ -23,8 +25,14 @@ export const clearRegisterErrors = () => ({ type: CLEAR_REGISTER_ERRORS });
 export const clearRegisterSuccess = () => ({ type: CLEAR_REGISTER_SUCCESS });
 
 const loginUserRequest = () => ({ type: LOGIN_USER_REQUEST });
-const loginUserSuccess = (user) => ({ type: LOGIN_USER_SUCCESS, payload: user });
-const loginUserFailure = (error) => ({type: LOGIN_USER_FAILURE,payload: error});
+const loginUserSuccess = (user) => ({
+  type: LOGIN_USER_SUCCESS,
+  payload: user,
+});
+const loginUserFailure = (error) => ({
+  type: LOGIN_USER_FAILURE,
+  payload: error,
+});
 export const clearLoginErrors = () => ({ type: CLEAR_LOGIN_ERRORS });
 export const clearLoginSuccess = () => ({ type: CLEAR_LOGIN_SUCCESS });
 
@@ -48,8 +56,8 @@ export const loginUser = (userData) => {
   return async (dispatch) => {
     try {
       dispatch(loginUserRequest());
-       const response =  await axiosApi.post("/users/sessions", userData);
-      dispatch(loginUserSuccess(response.data));
+      const response = await axiosApi.post("/users/sessions", userData);
+      dispatch(loginUserSuccess(response.data.user));
     } catch (e) {
       if (e.response && e.response.data) {
         dispatch(loginUserFailure(e.response.data));
