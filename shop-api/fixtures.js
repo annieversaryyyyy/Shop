@@ -30,14 +30,14 @@ const run = async () => {
   await Product.create(
     {
       title: "Traibl",
-      price: 7000,
+      price: 80,
       category: earringsCategory._id,
       image: ".fixtures/traibl.jpg",
       description: "Elegant silver earrings.",
     },
     {
       title: "Star",
-      price: 6500,
+      price: 75,
       category: ringsCategory._id,
       image: ".fixtures/star.jpg",
       description: "Elegant silver ring.",

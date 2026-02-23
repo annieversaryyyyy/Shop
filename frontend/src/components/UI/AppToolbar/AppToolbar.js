@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Anonymous from "../Menu/Anonymous";
-import UserMenu from "../Menu/UserMenu";
+import Anonymous from "./Menu/Anonymous";
+import UserMenu from "./Menu/UserMenu";
 
 function AppToolbar() {
   const user = useSelector((state) => state.users.user);

@@ -12,6 +12,8 @@ export const LOGIN_USER_FAILURE = "LOGIN_USER_FAILURE";
 export const CLEAR_LOGIN_ERRORS = "CLEAR_LOGIN_ERRORS";
 export const CLEAR_LOGIN_SUCCESS = "CLEAR_LOGIN_SUCCESS";
 
+export const LOGOUT_USER = 'LOGOUT_USER';
+
 const registerUserRequest = () => ({ type: REGISTER_USER_REQUEST });
 const registerUserSuccess = (user) => ({
   type: REGISTER_USER_SUCCESS,
@@ -65,5 +67,16 @@ export const loginUser = (userData) => {
         dispatch(loginUserFailure({ global: "No internet" }));
       }
     }
+  };
+};
+
+export const logoutUser = () => {
+  return async (dispatch, getState) => {
+    try {
+      const token = getState().users.user.token;
+      const headers = { Authorization: token };
+      await axiosApi.delete("/users/sessions", { headers });
+      dispatch({ type: LOGOUT_USER });
+    } catch (e) {}
   };
 };
