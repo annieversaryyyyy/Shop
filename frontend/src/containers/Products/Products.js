@@ -1,19 +1,32 @@
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
-import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchProducts } from "../../store/actions/productsActions";
 import ProductItem from "../../components/ProductItem/ProductItem";
+import { Navigate } from "react-router-dom";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 function Products() {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.products.fetchLoading);
   const products = useSelector((state) => state.products.products);
+  const user = useSelector((state) => state.users.user);
 
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
+
+  // useEffect(() => {
+  //   if (!user) {
+  //     toast.warning("Please sign in to view products");
+  //   }
+  // }, [user]);
+
+  // if (!user) {
+  //   return <Navigate to="/login" replace />;
+  // }
 
   return loading ? (
     <div>loading...</div>

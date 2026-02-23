@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "seed": "node fixtures.js"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +16,7 @@
     "cors": "^2.8.5",
     "express": "^5.2.1",
     "mongodb": "^7.0.0",
-    "mongoose": "^9.1.5",
+    "mongoose": "^6.13.9",
     "mongoose-id-validator": "^0.6.0",
     "multer": "^2.0.2"
   },

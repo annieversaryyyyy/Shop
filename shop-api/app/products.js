@@ -56,7 +56,7 @@ router.get("/:id", async (req, res) => {
 router.post("/", upload.single("image"), async (req, res) => {
   const { title, price, category, description } = req.body;
 
-  if (!title || !description || !price || !category) {
+  if (!title || !price || !category) {
     return res.status(400).send({ error: "data not valid" });
   }
   const productData = {
@@ -67,7 +67,7 @@ router.post("/", upload.single("image"), async (req, res) => {
   };
 
   if (req.file) {
-    productData.image = req.file.filename;
+    productData.image = 'uploads/' + req.file.filename;
   }
 
   try {

@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import axiosApi from "../../axiosApi";
 
 export const FETCH_PRODUCTS_REQUEST = "FETCH_PRODUCTS_REQUEST";
@@ -40,12 +41,21 @@ const createProductFailure = (error) => ({
 });
 
 export const fetchProducts = () => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
     try {
+      const headers = {
+        Authorization: getState().users.user && getState().users.user.token,
+      };
       dispatch(fetchProductsRequest());
-      const response = await axiosApi("/products");
+      const response = await axiosApi("/products", { headers });
       dispatch(fetchProductsSuccess(response.data));
+      
     } catch (e) {
+      console.log(e.response?.status);
+
+      if (e.response?.status === 401) {
+        toast.warn("You need to log in first");
+      }
       dispatch(fetchProductsFailure(e.message));
     }
   };
