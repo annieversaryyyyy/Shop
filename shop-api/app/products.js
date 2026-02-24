@@ -30,6 +30,10 @@ router.get("/", async (req, res) => {
     query.image = { $ne: null };
   }
 
+  if (req.query.category) {
+    query.category = req.query.category;
+  }
+
   try {
     const products = await Product.find(query)
       .sort(sort)
@@ -54,23 +58,19 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/", upload.single("image"), async (req, res) => {
-  const { title, price, category, description } = req.body;
-
-  if (!title || !price || !category) {
-    return res.status(400).send({ error: "data not valid" });
-  }
-  const productData = {
-    title,
-    price,
-    description,
-    image: null,
-  };
-
-  if (req.file) {
-    productData.image = 'uploads/' + req.file.filename;
-  }
-
   try {
+    const { title, price, category, description } = req.body;
+    const productData = {
+      title,
+      price,
+      category,
+      description: description || null,
+      image: null,
+    };
+
+    if (req.file) {
+      productData.image = "uploads/" + req.file.filename;
+    }
     const product = new Product(productData);
     await product.save();
     res.send(product);

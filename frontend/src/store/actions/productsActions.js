@@ -41,15 +41,11 @@ const createProductFailure = (error) => ({
 });
 
 export const fetchProducts = () => {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     try {
-      const headers = {
-        Authorization: getState().users.user && getState().users.user.token,
-      };
       dispatch(fetchProductsRequest());
-      const response = await axiosApi("/products", { headers });
+      const response = await axiosApi("/products");
       dispatch(fetchProductsSuccess(response.data));
-      
     } catch (e) {
       console.log(e.response?.status);
 

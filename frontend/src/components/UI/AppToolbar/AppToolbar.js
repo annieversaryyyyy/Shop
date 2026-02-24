@@ -9,7 +9,6 @@ import UserMenu from "./Menu/UserMenu";
 
 function AppToolbar() {
   const user = useSelector((state) => state.users.user);
-  console.log(user);
   return (
     <>
       <AppBar

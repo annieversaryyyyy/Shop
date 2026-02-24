@@ -18,6 +18,7 @@ function Product() {
   useEffect(() => {
     dispatch(fetchProduct(id));
   }, [dispatch, id]);
+  
   return (
     product && (
       <Grid container justifyContent="center" mt={6}>

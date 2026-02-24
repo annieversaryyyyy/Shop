@@ -32,15 +32,22 @@ const run = async () => {
       title: "Traibl",
       price: 80,
       category: earringsCategory._id,
-      image: ".fixtures/traibl.jpg",
+      image: "fixtures/traibl.jpg",
       description: "Elegant silver earrings.",
     },
     {
       title: "Star",
       price: 75,
       category: ringsCategory._id,
-      image: ".fixtures/star.jpg",
+      image: "fixtures/star.jpg",
       description: "Elegant silver ring.",
+    },
+      {
+      title: "Base",
+      price: 45,
+      category: ringsCategory._id,
+      image: "fixtures/base.jpg",
+      description: "Base silver ring.",
     },
   );
 
