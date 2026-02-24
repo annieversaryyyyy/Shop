@@ -40,11 +40,11 @@ const createProductFailure = (error) => ({
   payload: error,
 });
 
-export const fetchProducts = () => {
+export const fetchProducts = (query) => {
   return async (dispatch) => {
     try {
       dispatch(fetchProductsRequest());
-      const response = await axiosApi("/products");
+      const response = await axiosApi("/products" + query);
       dispatch(fetchProductsSuccess(response.data));
     } catch (e) {
       console.log(e.response?.status);

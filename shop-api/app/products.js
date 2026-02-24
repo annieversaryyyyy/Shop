@@ -71,6 +71,7 @@ router.post("/", upload.single("image"), async (req, res) => {
     if (req.file) {
       productData.image = "uploads/" + req.file.filename;
     }
+    
     const product = new Product(productData);
     await product.save();
     res.send(product);

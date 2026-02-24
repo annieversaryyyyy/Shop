@@ -4,17 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../store/actions/productsActions";
 import ProductItem from "../../components/ProductItem/ProductItem";
 import ProductsLayout from "../../components/UI/Layout/ProductsLayout";
-import './Products.css'
+import { useLocation } from "react-router-dom";
+import "./Products.css";
 
 function Products() {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.products.fetchLoading);
   const products = useSelector((state) => state.products.products);
-  const user = useSelector((state) => state.users.user);
+  const query = useLocation().search;
 
   useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
+    dispatch(fetchProducts(query));
+  }, [dispatch, query]);
 
   // useEffect(() => {
   //   if (!user) {

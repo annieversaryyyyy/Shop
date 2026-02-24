@@ -5,12 +5,15 @@ import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import FileInput from "../UI/Form/FileInput/FileInput";
+import FormElement from "../UI/Form/FormElement/FormElement";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
-function ProductForm({ onSubmit }) {
+function ProductForm({ onSubmit, categories }) {
   const [state, setState] = useState({
     title: "",
     price: "",
     description: "",
+    category: "",
     image: "",
   });
 
@@ -65,6 +68,26 @@ function ProductForm({ onSubmit }) {
               </Grid>
 
               <Grid item>
+                <FormControl fullWidth>
+                  <InputLabel id="category">Category</InputLabel>
+                  <Select
+                    labelId="category"
+                    fullWidth
+                    value={state.category}
+                    name="category"
+                    label="Category"
+                    onChange={inputChangeHandler}
+                  >
+                    {categories.map((category) => (
+                      <MenuItem key={category._id} value={category._id}>
+                        {category.title}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </Grid>
+
+              <Grid item>
                 <TextField
                   required
                   id="price"
@@ -79,7 +102,6 @@ function ProductForm({ onSubmit }) {
               <Grid item>
                 <TextField
                   id="description"
-                  required
                   multiline
                   rows={3}
                   name="description"

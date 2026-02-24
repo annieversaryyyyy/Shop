@@ -3,7 +3,6 @@ import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import { loadFromLocalStorage, saveToLocalStorage } from "./localStorage";
 import usersReducer from "./reducers/usersReducer";
 import productsReducer from "./reducers/productsReducer";
-import axios from "axios";
 import axiosApi from "../axiosApi";
 import categoriesReducer from "./reducers/categoriesReducer";
 
