@@ -71,12 +71,15 @@ router.post("/", upload.single("image"), async (req, res) => {
     if (req.file) {
       productData.image = "uploads/" + req.file.filename;
     }
-    
+
     const product = new Product(productData);
     await product.save();
     res.send(product);
   } catch (e) {
-    res.status(400).send({ error: e.errors });
+    if (e.name === "ValidationError") {
+      return res.status(400).send({ errors: e.errors });
+    }
+    res.status(500).send(e);
   }
 });
 

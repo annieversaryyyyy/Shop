@@ -9,20 +9,27 @@ function NewProduct() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const categories = useSelector((state) => state.categories.categories);
+  const error = useSelector((state) => state.products.createProductsError);
 
   useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
 
   const onProductFormSubmit = async (productData) => {
-    await dispatch(createProduct(productData));
-    navigate("/");
+    const result = await dispatch(createProduct(productData));
+
+    if (result) {
+      navigate("/");
+    }
   };
+
   return (
     <>
-      <ProductForm 
-      categories={categories}
-      onSubmit={onProductFormSubmit} />
+      <ProductForm
+        categories={categories}
+        error={error}
+        onSubmit={onProductFormSubmit}
+      />
     </>
   );
 }

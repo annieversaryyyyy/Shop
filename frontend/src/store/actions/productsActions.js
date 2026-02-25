@@ -75,8 +75,14 @@ export const createProduct = (productData) => {
       dispatch(createProductRequest());
       await axiosApi.post("/products", productData);
       dispatch(createProductSuccess());
+      return true; 
     } catch (e) {
-      dispatch(createProductFailure(e.message));
+      if (e.response && e.response.data) {
+        dispatch(createProductFailure(e.response.data));
+      } else {
+        dispatch(createProductFailure({ global: "No internet" }));
+      }
+      return false; 
     }
   };
 };

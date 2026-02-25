@@ -16,6 +16,8 @@ const initialState = {
   fetchLoading: false,
   singleLoading: false,
   fetchError: null,
+  createProductsError: null,
+  createProductsLoading: false,
 };
 
 const productsReducer = (state = initialState, actions) => {
@@ -35,11 +37,16 @@ const productsReducer = (state = initialState, actions) => {
       return { ...state, singleLoading: false, fetchError: actions.payload };
 
     case CREATE_PRODUCT_REQUEST:
-      return { ...state, fetchLoading: true };
+      return { ...state, createProductsLoading: true };
     case CREATE_PRODUCT_SUCCESS:
-      return { ...state, fetchLoading: false };
+      return { ...state, createProductsLoading: false };
     case CREATE_PRODUCT_FAILURE:
-      return { ...state, fetchLoading: false };
+      return {
+        ...state,
+        createProductsError: actions.payload,
+        createProductsLoading: false,
+      };
+
     default:
       return state;
   }

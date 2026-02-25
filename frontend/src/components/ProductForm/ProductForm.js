@@ -6,9 +6,9 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import FileInput from "../UI/Form/FileInput/FileInput";
 import FormElement from "../UI/Form/FormElement/FormElement";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { FormControl, FormHelperText, InputLabel, MenuItem, Select } from "@mui/material";
 
-function ProductForm({ onSubmit, categories }) {
+function ProductForm({ onSubmit, categories, error }) {
   const [state, setState] = useState({
     title: "",
     price: "",
@@ -37,6 +37,14 @@ function ProductForm({ onSubmit, categories }) {
     setState((prev) => ({ ...prev, [name]: file }));
   };
 
+  const getFieldError = (fieldName) => {
+    try {
+      return error.errors[fieldName].message;
+    } catch {
+      return undefined;
+    }
+  };
+
   return (
     <form autoComplete="off" onSubmit={submitForHandler}>
       <Grid container justifyContent="center" mt={3} mb={3}>
@@ -58,24 +66,25 @@ function ProductForm({ onSubmit, categories }) {
             <Grid container direction="column" spacing={3}>
               <Grid item>
                 <TextField
-                  required
                   id="title"
                   name="title"
                   label="Title"
                   value={state.title}
                   onChange={inputChangeHandler}
+                  error={!!getFieldError("title")}
+                  helperText={getFieldError("title")}
                 />
               </Grid>
 
               <Grid item>
-                <FormControl fullWidth>
-                  <InputLabel id="category">Category</InputLabel>
+                <FormControl fullWidth error={!!getFieldError("category")}>
+                  <InputLabel id="category-label">Category</InputLabel>
                   <Select
-                    labelId="category"
+                    labelId="category-label"
                     fullWidth
-                    value={state.category}
-                    name="category"
                     label="Category"
+                    name="category"
+                    value={state.category}
                     onChange={inputChangeHandler}
                   >
                     {categories.map((category) => (
@@ -84,18 +93,20 @@ function ProductForm({ onSubmit, categories }) {
                       </MenuItem>
                     ))}
                   </Select>
+                  <FormHelperText>{getFieldError("category")}</FormHelperText>
                 </FormControl>
               </Grid>
 
               <Grid item>
                 <TextField
-                  required
                   id="price"
                   name="price"
                   label="Price"
                   type="number"
                   value={state.price}
                   onChange={inputChangeHandler}
+                  error={!!getFieldError("price")}
+                  helperText={getFieldError("price")}
                 />
               </Grid>
 
@@ -108,6 +119,8 @@ function ProductForm({ onSubmit, categories }) {
                   label="Description"
                   value={state.description}
                   onChange={inputChangeHandler}
+                  error={!!getFieldError("description")}
+                  helperText={getFieldError("description")}
                 />
               </Grid>
 

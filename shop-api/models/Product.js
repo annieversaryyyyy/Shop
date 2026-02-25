@@ -18,11 +18,10 @@ const ProductSchema = new Schema({
   },
   description: {
     type: String,
-    required: true,
   },
   image: String,
 });
 
-ProductSchema.plugin(idValidator, { message : "Bad ID value for {PATH}" });
+ProductSchema.plugin(idValidator, { message: "Bad ID value for {PATH}" });
 const Product = mongoose.model("Product", ProductSchema);
 module.exports = Product;

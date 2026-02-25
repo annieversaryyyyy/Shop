@@ -37,7 +37,6 @@ const FileInput = ({ onChange, name, label, error }) => {
             label={label}
             value={filename}
             fullWidth
-            required
             error={error}
             onClick={activateInput}
           />
