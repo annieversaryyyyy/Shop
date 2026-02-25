@@ -4,6 +4,7 @@ const path = require("path");
 const config = require("../config");
 const crypto = require("crypto");
 const Product = require("../models/Product");
+const auth = require("../middleware/auth");
 
 const router = express.Router();
 
@@ -57,7 +58,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", upload.single("image"), async (req, res) => {
+router.post("/", auth, upload.single("image"), async (req, res) => {
   try {
     const { title, price, category, description } = req.body;
     const productData = {

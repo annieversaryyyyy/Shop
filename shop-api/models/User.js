@@ -16,10 +16,16 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
-  token:{
+  token: {
     type: String,
     required: true,
-  }
+  },
+  role: {
+    required: true,
+    type: String,
+    default: "user",
+    enum: ["user", "admin"],
+  },
 });
 
 UserSchema.pre("save", async function () {
@@ -42,9 +48,9 @@ UserSchema.methods.checkPassword = function (password) {
   return bcrypt.compare(password, this.password);
 };
 
-UserSchema.methods.generateToken = function(){
-    this.token = crypto.randomUUID();
-}
+UserSchema.methods.generateToken = function () {
+  this.token = crypto.randomUUID();
+};
 
 const User = mongoose.model("User", UserSchema);
 

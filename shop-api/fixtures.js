@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { nanoid } = require("nanoid");
 const config = require("./config");
 
 const User = require("./models/User");
@@ -42,7 +41,7 @@ const run = async () => {
       image: "fixtures/star.jpg",
       description: "Elegant silver ring.",
     },
-      {
+    {
       title: "Base",
       price: 45,
       category: ringsCategory._id,
@@ -54,13 +53,15 @@ const run = async () => {
   await User.create(
     {
       username: "admin",
-      password: "admin",
-      token: nanoid(),
+      password: "admin1234",
+      token: crypto.randomUUID(),
+      role: "admin",
     },
     {
-      username: "root",
-      password: "root",
-      token: nanoid(),
+      username: "user",
+      password: "user1234",
+      token: crypto.randomUUID(),
+      role: "user",
     },
   );
 

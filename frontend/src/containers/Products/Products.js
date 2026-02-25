@@ -26,6 +26,7 @@ function Products() {
   // if (!user) {
   //   return <Navigate to="/login" replace />;
   // }
+  
 
   return loading ? (
     <div>loading...</div>
