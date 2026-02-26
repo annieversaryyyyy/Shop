@@ -5,6 +5,7 @@ const config = require("../config");
 const crypto = require("crypto");
 const Product = require("../models/Product");
 const auth = require("../middleware/auth");
+const permit = require("../middleware/permit");
 
 const router = express.Router();
 
@@ -58,31 +59,38 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", auth, upload.single("image"), async (req, res) => {
-  try {
-    const { title, price, category, description } = req.body;
-    const productData = {
-      title,
-      price,
-      category,
-      description: description || null,
-      image: null,
-    };
+router.post(
+  "/",
+  auth,
+  permit("admin"),
+  upload.single("image"),
+  async (req, res) => {
+    try {
+      const { title, price, category, description } = req.body;
+      const productData = {
+        title,
+        price,
+        category,
+        description: description || null,
+        image: null,
+      };
 
-    if (req.file) {
-      productData.image = "uploads/" + req.file.filename;
-    }
+      if (req.file) {
+        productData.image = "uploads/" + req.file.filename;
+      }
 
-    const product = new Product(productData);
-    await product.save();
-    res.send(product);
-  } catch (e) {
-    if (e.name === "ValidationError") {
-      return res.status(400).send({ errors: e.errors });
+      const product = new Product(productData);
+
+      await product.save();
+      res.send(product);
+    } catch (e) {
+      if (e.name === "ValidationError") {
+        return res.status(400).send({ errors: e.errors });
+      }
+      res.status(500).send(e);
     }
-    res.status(500).send(e);
-  }
-});
+  },
+);
 
 router.put("/:id", async (req, res) => {
   const productData = {

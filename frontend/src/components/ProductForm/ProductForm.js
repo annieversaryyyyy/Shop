@@ -6,7 +6,14 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import FileInput from "../UI/Form/FileInput/FileInput";
 import FormElement from "../UI/Form/FormElement/FormElement";
-import { FormControl, FormHelperText, InputLabel, MenuItem, Select } from "@mui/material";
+import {
+  FormControl,
+  FormHelperText,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@mui/material";
+import FormSelect from "../UI/Form/FormSelect/FormSelect";
 
 function ProductForm({ onSubmit, categories, error }) {
   const [state, setState] = useState({
@@ -76,26 +83,15 @@ function ProductForm({ onSubmit, categories, error }) {
                 />
               </Grid>
 
-              <Grid item>
-                <FormControl fullWidth error={!!getFieldError("category")}>
-                  <InputLabel id="category-label">Category</InputLabel>
-                  <Select
-                    labelId="category-label"
-                    fullWidth
-                    label="Category"
-                    name="category"
-                    value={state.category}
-                    onChange={inputChangeHandler}
-                  >
-                    {categories.map((category) => (
-                      <MenuItem key={category._id} value={category._id}>
-                        {category.title}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                  <FormHelperText>{getFieldError("category")}</FormHelperText>
-                </FormControl>
-              </Grid>
+              <FormSelect
+                required={true}
+                label="Category"
+                onChange={inputChangeHandler}
+                name="category"
+                value={state.category}
+                options={categories}
+                error={getFieldError("category")}
+              />
 
               <Grid item>
                 <TextField
