@@ -1,10 +1,10 @@
 import { thunk } from "redux-thunk";
+import baseApi, { setupInterceptors } from "../shared/api/baseApi";
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import { loadFromLocalStorage, saveToLocalStorage } from "./localStorage";
-import usersReducer from "./reducers/usersReducer";
-import productsReducer from "./reducers/productsReducer";
-import axiosApi from "../axiosApi";
-import categoriesReducer from "./reducers/categoriesReducer";
+import usersReducer from "../entities/user/model/usersReducer";
+import productsReducer from "../entities/product/model/productsReducer";
+import categoriesReducer from "../entities/category/model/categoriesReducer";
 
 export const composeEnhancers =
   window.REDUX_DEVTOOLS_EXTENSION_COMPOSE || compose;
@@ -29,12 +29,6 @@ store.subscribe(() => {
   });
 });
 
-axiosApi.interceptors.request.use((config) => {
-  try {
-    config.headers["Authorization"] = store.getState().users.user.token;
-  } catch (error) {}
-
-  return config;
-});
+setupInterceptors(store);
 
 export default store;
