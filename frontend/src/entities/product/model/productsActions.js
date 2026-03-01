@@ -77,12 +77,7 @@ export const createProduct = (productData) => {
       dispatch(createProductSuccess());
       return true;
     } catch (e) {
-      if (e.response && e.response.data) {
-        dispatch(createProductFailure(e.response.data));
-      } else {
-        dispatch(createProductFailure({ global: "No internet" }));
-      }
-      return false;
+      dispatch(createProductFailure(e.response.data));
     }
   };
 };

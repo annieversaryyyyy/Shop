@@ -14,13 +14,10 @@ import {
 import { toast } from "react-toastify";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
-// import FormElement from "../../components/UI/Form/FormElement/FormElement";
-// import {
-//   clearLoginSuccess,
-//   loginUser,
-// } from "../../entities/user/model/usersActions";
+
 import { useNavigate } from "react-router-dom";
 import {
+  clearLoginErrors,
   clearLoginSuccess,
   loginUser,
 } from "../../../../entities/user/model/usersActions";
@@ -40,6 +37,10 @@ function LoginForm() {
   const loginSuccess = useSelector((state) => state.users.loginSuccess);
   const loginError = useSelector((state) => state.users.loginError);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(clearLoginErrors());
+  }, [dispatch]);
 
   const [user, setUser] = useState({
     username: "",

@@ -6,6 +6,8 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Anonymous from "./Menu/Anonymous";
 import UserMenu from "./Menu/UserMenu";
+import logo from "../../shared/assets/misticalogo.png";
+import './AppToolbar.css'
 
 function AppToolbar() {
   const user = useSelector((state) => state.users.user);
@@ -18,7 +20,7 @@ function AppToolbar() {
           color: "white",
         }}
       >
-        <Toolbar>
+        <Toolbar sx={{ maxHeight: 70 }}>
           <Grid
             container
             justifyContent="space-between"
@@ -36,7 +38,9 @@ function AppToolbar() {
                   },
                 }}
               >
-                <Link to="/">Jewelry shop Mistica</Link>
+                <Link to="/">
+                  <img src={logo}  alt="logo" className="logo"  />
+                </Link>
               </Typography>
             </Grid>
 

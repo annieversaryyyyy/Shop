@@ -42,8 +42,8 @@ export const registerUser = (userData) => {
   return async (dispatch) => {
     try {
       dispatch(registerUserRequest());
-      await baseApi.post("/users", userData);
-      dispatch(registerUserSuccess());
+      const response = await baseApi.post("/users", userData);
+      dispatch(registerUserSuccess(response.data));
     } catch (e) {
       if (e.response && e.response.data) {
         dispatch(registerUserFailure(e.response.data));

@@ -12,9 +12,9 @@ import {
   REGISTER_USER_SUCCESS,
 } from "./usersActions";
 
-const initialState = {
+export const initialState = {
   user: null,
-  registerSuccess: false,
+  registerSuccess: false, 
   registerLoading: false,
   registerError: null,
   loginSuccess: false,
@@ -31,7 +31,7 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         registerLoading: false,
         registerSuccess: true,
-        user: action.payload,
+        user: action.payload, 
       };
     case REGISTER_USER_FAILURE:
       return {
