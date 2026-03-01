@@ -21,7 +21,7 @@ const CategoriesSidebar = () => {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-  
+
   return (
     <>
       <CssBaseline />
@@ -42,6 +42,7 @@ const CategoriesSidebar = () => {
           keepMounted: true,
         }}
         sx={{
+
           display: { xs: "block", sm: "none" },
           "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
         }}
@@ -52,7 +53,12 @@ const CategoriesSidebar = () => {
         variant="permanent"
         sx={{
           display: { xs: "none", sm: "block", zIndex: 0, position: "relative" },
-          "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
+          "& .MuiDrawer-paper": {
+            boxSizing: "border-box",
+            width: drawerWidth,
+            backgroundColor: "#e9e4e4",
+            color: "#000000",
+          },
         }}
         open
       >
@@ -62,3 +68,4 @@ const CategoriesSidebar = () => {
   );
 };
 export default CategoriesSidebar;
+
