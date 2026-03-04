@@ -9,7 +9,11 @@ const router = express.Router();
 router.post("/", async (req, res) => {
   try {
     const { email, password, displayName } = req.body;
-    const userData = { email, password, displayName };
+    const userData = {
+      email: email.trim().toLowerCase(),
+      password,
+      displayName,
+    };
     const user = new User(userData);
 
     user.generateToken();
@@ -17,7 +21,9 @@ router.post("/", async (req, res) => {
     res.send(user);
   } catch (e) {
     if (e.code === 11000) {
-      return res.status(400).send({ username: "Username already exists" });
+      return res
+        .status(400)
+        .send({ email: "User with this email already exists" });
     }
     res.status(400).send({ error: e.message });
   }

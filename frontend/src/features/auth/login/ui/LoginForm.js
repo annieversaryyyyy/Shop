@@ -93,7 +93,7 @@ function LoginForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(loginUser({ ...user }));
+    dispatch(loginUser({ ...user, email: user.email.trim().toLowerCase() }));
   };
 
   return (

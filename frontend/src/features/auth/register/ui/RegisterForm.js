@@ -102,7 +102,12 @@ function RegisterForm() {
     e.preventDefault();
     if (!validateInputs()) return;
     dispatch(clearRegisterErrors());
-    dispatch(registerUser({ ...user }));
+    dispatch(
+      registerUser({
+        ...user,
+        email: user.email.trim().toLowerCase(),
+      }),
+    );
   };
 
   return (
@@ -188,7 +193,7 @@ function RegisterForm() {
                 variant="contained"
                 sx={{
                   mt: 2,
-                backgroundColor: "#300000",
+                  backgroundColor: "#300000",
                   color: "white",
                   "&:hover": {
                     backgroundColor: "#490101",
