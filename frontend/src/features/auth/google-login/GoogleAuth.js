@@ -1,16 +1,19 @@
 import React from "react";
 import { GoogleLogin } from "@react-oauth/google";
+import { useDispatch } from "react-redux";
+import { googleLogin } from "../../../entities/user/model/usersActions";
 
-function GoogleAuth({text}) {
+function GoogleAuth() {
+  const dispatch = useDispatch();
+
   const googleResponse = (response) => {
-    console.log(response);
+    dispatch(googleLogin(response));
   };
   return (
     <>
-      <GoogleLogin  theme="outline" text={text}
-        onSuccess={(googleResponse) => {
-          console.log(googleResponse);
-        }}
+      <GoogleLogin
+        theme="outline"
+        onSuccess={googleResponse}
         onError={() => {
           console.log("Login Failed");
         }}

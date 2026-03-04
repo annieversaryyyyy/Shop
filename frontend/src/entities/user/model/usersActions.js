@@ -80,3 +80,20 @@ export const logoutUser = () => {
     } catch (e) {}
   };
 };
+
+export const googleLogin = (data) => {
+  return async (dispatch) => {
+    try {
+      const response = await baseApi.post("/users/googleLogin", {
+        token: data.credential,
+      });
+      dispatch(loginUserSuccess(response.data.user));
+    } catch (e) {
+      if (e.response && e.response.data) {
+        dispatch(loginUserFailure(e.response.data));
+      } else {
+        dispatch(loginUserFailure({ global: "No internet" }));
+      }
+    }
+  };
+};

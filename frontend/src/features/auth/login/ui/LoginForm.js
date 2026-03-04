@@ -188,7 +188,7 @@ function LoginForm() {
             >
               or
             </Divider>
-            <GoogleAuth text="signin_with" />
+            <GoogleAuth />
             <Typography textAlign="center" sx={{ mt: 2 }}>
               <Link
                 component={RouterLink}

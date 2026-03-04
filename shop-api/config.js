@@ -8,6 +8,9 @@ module.exports = {
   mongo: {
     db: "mongodb://localhost/shop",
     options: {},
-    // options: {useNewUrlParser: true},
+  },
+  google: {
+    clientId:
+      "163796225030-mihi8qo1v96g5f2ifph79ou2r3li7tkf.apps.googleusercontent.com",
   },
 };

@@ -1,5 +1,5 @@
 import { thunk } from "redux-thunk";
-import baseApi, { setupInterceptors } from "../shared/api/baseApi";
+import { setupInterceptors } from "../shared/api/baseApi";
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import { loadFromLocalStorage, saveToLocalStorage } from "./localStorage";
 import usersReducer, {
