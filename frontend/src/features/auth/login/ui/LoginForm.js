@@ -22,12 +22,13 @@ import {
   loginUser,
 } from "../../../../entities/user/model/usersActions";
 import FormElement from "../../../../shared/ui/Form/FormElement/FormElement";
+import GoogleAuth from "../../google-login/GoogleAuth";
 
 const theme = createTheme({
   palette: {
     mode: "dark",
     background: {
-      default: "#07111d",
+      default: "#000000",
     },
   },
 });
@@ -43,12 +44,12 @@ function LoginForm() {
   }, [dispatch]);
 
   const [user, setUser] = useState({
-    username: "",
+    email: "",
     password: "",
   });
 
   const [errors, setErrors] = useState({
-    username: "",
+    email: "",
     password: "",
   });
 
@@ -62,14 +63,14 @@ function LoginForm() {
 
   useEffect(() => {
     if (loginError) {
-      if (loginError.username || loginError.password) {
+      if (loginError.email || loginError.password) {
         setErrors((prev) => ({
           ...prev,
           ...loginError,
         }));
       } else if (loginError.error) {
         setErrors({
-          username: loginError.error,
+          email: loginError.error,
           password: "",
         });
       }
@@ -108,8 +109,8 @@ function LoginForm() {
             background: `
       radial-gradient(
         circle at center,
-        #102a43 0%,
-        #07111d 70%
+        #6e0c0c 0%,
+        #000000 70%
       )
     `,
           }}
@@ -123,7 +124,7 @@ function LoginForm() {
               display: "flex",
               flexDirection: "column",
               gap: 2,
-              backgroundColor: "#05111c",
+              backgroundColor: "#000000",
               color: "white",
               borderRadius: 6,
             }}
@@ -133,15 +134,15 @@ function LoginForm() {
             </Typography>
             <Box component="form" onSubmit={handleSubmit}>
               <FormControl fullWidth margin="normal">
-                <FormLabel sx={{ color: "white" }}>Username</FormLabel>
+                <FormLabel sx={{ color: "white" }}>Email</FormLabel>
                 <FormElement
                   required={true}
-                  name="username"
-                  value={user.username}
+                  name="email"
+                  value={user.email}
                   onChange={handleChange}
-                  error={Boolean(errors.username)}
-                  helperText={errors.username}
-                  placeholder="Your username"
+                  error={Boolean(errors.email)}
+                  helperText={errors.email}
+                  placeholder="Your email"
                 />
               </FormControl>
 
@@ -163,7 +164,14 @@ function LoginForm() {
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 2 }}
+                sx={{
+                  mt: 2,
+                  backgroundColor: "#300000",
+                  color: "white",
+                  "&:hover": {
+                    backgroundColor: "#490101",
+                  },
+                }}
               >
                 Sign in
               </Button>
@@ -180,9 +188,14 @@ function LoginForm() {
             >
               or
             </Divider>
-
+            <GoogleAuth text="signin_with" />
             <Typography textAlign="center" sx={{ mt: 2 }}>
-              <Link component={RouterLink} to="/register" underline="hover">
+              <Link
+                component={RouterLink}
+                to="/register"
+                underline="hover"
+                sx={{ color: "white" }}
+              >
                 Sign up
               </Link>
             </Typography>

@@ -27,7 +27,7 @@ function ProductItem({ id, title, price, image }) {
           width: "100%",
           borderRadius: 4,
           boxShadow: 6,
-          backgroundColor: "#e0dbdb",
+          backgroundColor: "#000000",
           transition: "0.3s ease",
           cursor: "pointer",
           "&:hover": {
@@ -38,7 +38,7 @@ function ProductItem({ id, title, price, image }) {
       >
         <CardMedia component="img" height="220" image={cardImage} alt={title} />
         <CardHeader
-          sx={{ color: "black" }}
+          sx={{ color: "white" }}
           title={title}
           titleTypographyProps={{
             fontWeight: 700,
@@ -50,7 +50,7 @@ function ProductItem({ id, title, price, image }) {
         <CardContent sx={{ textAlign: "center" }}>
           <Typography
             variant="h4"
-            color="black"
+            color="white"
             sx={{ fontWeight: 600, mb: 2 }}
           >
             ${price}
@@ -62,9 +62,9 @@ function ProductItem({ id, title, price, image }) {
             component={Link}
             to={`/products/${id}`}
             sx={{
-              color: "black",
+              color: "white",
               border: "1px solid",
-              borderColor: "black",
+              borderColor: "white",
               borderRadius: 2,
               px: 3,
               "&:hover": {

@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Anonymous from "./Menu/Anonymous";
-import UserMenu from "./Menu/UserMenu";
+import Anonymous from "./menu/Anonymous";
+import UserMenu from "./menu/UserMenu";
 import logo from "../../shared/assets/misticalogo.png";
 import './AppToolbar.css'
 
@@ -16,7 +16,7 @@ function AppToolbar() {
       <AppBar
         position="fixed"
         sx={{
-          backgroundColor: "#05111c",
+          backgroundColor: "#000000",
           color: "white",
         }}
       >

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 
 function FormElement({
   name,
@@ -19,8 +19,13 @@ function FormElement({
         label: { color: "white" },
         "& .MuiOutlinedInput-root": {
           "& fieldset": { borderColor: "white" },
-          "&:hover fieldset": { borderColor: "#90caf9" },
-          "&.Mui-focused fieldset": { borderColor: "#90caf9" },
+          "&:hover fieldset": { borderColor: "#f8dadc" },
+          "&.Mui-focused fieldset": { borderColor: "#f8dadc" },
+        },
+        "& input:-webkit-autofill": {
+          WebkitBoxShadow: "0 0 0 1000px #300000 inset",
+          WebkitTextFillColor: "white",
+          transition: "background-color 5000s ease-in-out 0s",
         },
       }}
       type={type}

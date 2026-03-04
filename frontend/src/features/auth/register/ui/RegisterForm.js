@@ -21,12 +21,13 @@ import {
   registerUser,
 } from "../../../../entities/user/model/usersActions";
 import FormElement from "../../../../shared/ui/Form/FormElement/FormElement";
+import GoogleAuth from "../../google-login/GoogleAuth";
 
 const theme = createTheme({
   palette: {
     mode: "dark",
     background: {
-      default: "#07111d",
+      default: "#000000",
     },
   },
 });
@@ -54,12 +55,13 @@ function RegisterForm() {
   }, [registerError]);
 
   const [user, setUser] = useState({
-    username: "",
+    email: "",
     password: "",
+    displayName: "",
   });
 
   const [errors, setErrors] = useState({
-    username: "",
+    email: "",
     password: "",
   });
 
@@ -79,12 +81,12 @@ function RegisterForm() {
 
   const validateInputs = () => {
     const newErrors = {
-      username: "",
+      email: "",
       password: "",
     };
 
-    if (!user.username.trim()) {
-      newErrors.username = "Name is required.";
+    if (!user.email.trim()) {
+      newErrors.email = "Email is required.";
     }
 
     if (!user.password || user.password.length < 6) {
@@ -93,7 +95,7 @@ function RegisterForm() {
 
     setErrors(newErrors);
 
-    return !newErrors.username && !newErrors.password;
+    return !newErrors.email && !newErrors.password;
   };
 
   const handleSubmit = (e) => {
@@ -116,8 +118,8 @@ function RegisterForm() {
             background: `
       radial-gradient(
         circle at center,
-        #102a43 0%,
-        #07111d 70%
+        #6e0c0c 0%,
+        #000000 70%
       )
     `,
           }}
@@ -131,7 +133,7 @@ function RegisterForm() {
               display: "flex",
               flexDirection: "column",
               gap: 2,
-              backgroundColor: "#05111c",
+              backgroundColor: "#000000",
               color: "white",
               borderRadius: 6,
             }}
@@ -142,15 +144,15 @@ function RegisterForm() {
 
             <Box component="form" onSubmit={handleSubmit}>
               <FormControl fullWidth margin="normal">
-                <FormLabel sx={{ color: "white" }}>Username</FormLabel>
+                <FormLabel sx={{ color: "white" }}>Email</FormLabel>
                 <FormElement
                   required={true}
-                  name="username"
-                  value={user.username}
+                  name="email"
+                  value={user.email}
                   onChange={handleChange}
-                  error={Boolean(errors.username)}
-                  helperText={errors.username}
-                  placeholder="Your username"
+                  error={Boolean(errors.email)}
+                  helperText={errors.email}
+                  placeholder="Your email"
                 />
               </FormControl>
 
@@ -168,11 +170,30 @@ function RegisterForm() {
                 />
               </FormControl>
 
+              <FormControl fullWidth margin="normal">
+                <FormElement
+                  required={true}
+                  name="displayName"
+                  value={user.displayName}
+                  onChange={handleChange}
+                  error={Boolean(errors.displayName)}
+                  helperText={errors.displayName}
+                  placeholder="Your displayName"
+                />
+              </FormControl>
+
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 2 }}
+                sx={{
+                  mt: 2,
+                backgroundColor: "#300000",
+                  color: "white",
+                  "&:hover": {
+                    backgroundColor: "#490101",
+                  },
+                }}
               >
                 Sign up
               </Button>
@@ -190,13 +211,16 @@ function RegisterForm() {
               or
             </Divider>
 
-            <Button fullWidth variant="outlined" type="submit">
-              Sign up with Google
-            </Button>
+            <GoogleAuth />
 
             <Typography textAlign="center" sx={{ mt: 2 }}>
               Already have an account?{" "}
-              <Link component={RouterLink} to="/login" underline="hover">
+              <Link
+                component={RouterLink}
+                to="/login"
+                underline="hover"
+                sx={{ color: "white" }}
+              >
                 Sign in
               </Link>
             </Typography>
