@@ -6,7 +6,8 @@ module.exports = {
   rootPath,
   uploadPath: path.join(rootPath, "public/uploads"),
   mongo: {
-    db: "mongodb://localhost/shop",
+    // db: "mongodb://localhost/shop",
+    db: process.env.MONGO_URL || "mongodb://localhost/shop",
     options: {},
   },
   google: {
