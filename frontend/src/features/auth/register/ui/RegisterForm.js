@@ -21,7 +21,6 @@ import {
   registerUser,
 } from "../../../../entities/user/model/usersActions";
 import FormElement from "../../../../shared/ui/Form/FormElement/FormElement";
-import GoogleAuth from "../../google-login/GoogleAuth";
 
 const theme = createTheme({
   palette: {
@@ -215,8 +214,6 @@ function RegisterForm() {
             >
               or
             </Divider>
-
-            <GoogleAuth />
 
             <Typography textAlign="center" sx={{ mt: 2 }}>
               Already have an account?{" "}

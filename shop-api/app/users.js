@@ -54,13 +54,14 @@ router.post("/googleLogin", async (req, res) => {
       idToken: token,
       audience: config.google.clientId,
     });
-    const { name, email } = ticket.getPayload();
+    const { name, email, picture } = ticket.getPayload();
     let user = await User.findOne({ email });
     if (!user) {
       user = new User({
         email,
         password: crypto.randomUUID(),
         displayName: name,
+        avatar: picture,
       });
     }
 

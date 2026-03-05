@@ -5,6 +5,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { logoutUser } from "../../../entities/user/model/usersActions";
 import { useNavigate } from "react-router-dom";
+import {Avatar} from "@mui/material";
 
 const UserMenu = ({ user }) => {
   const dispatch = useDispatch();
@@ -36,6 +37,13 @@ const UserMenu = ({ user }) => {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
+        {user.avatar && (
+          <Avatar
+            alt={user.displayName}
+            src={user.avatar}
+            sx={{ width: 24, height: 24, marginRight: "5px" }}
+          />
+        )}
         Hello, {user.email}!
       </Button>
 
