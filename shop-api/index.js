@@ -1,13 +1,13 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+
 const products = require("./app/products");
 const categories = require("./app/categories");
 const users = require("./app/users");
 const config = require("./config");
 
 const app = express();
-const PORT = process.env.PORT || 8000;
 
 app.use(express.static("public"));
 app.use(express.json());
@@ -23,21 +23,17 @@ app.get("/", (req, res) => {
 
 const run = async () => {
   try {
-    await mongoose.connect(config.mongo.db, config.mongo.options);
+    await mongoose.connect(process.env.MONGO_URL);
     console.log("MongoDB connected");
 
-    app.listen(PORT, () => {
+    const PORT = process.env.PORT || 8080;
+
+    app.listen(PORT, "0.0.0.0", () => {
       console.log(`Server started on port ${PORT}`);
     });
 
-    process.on("SIGINT", async () => {
-      await mongoose.disconnect();
-      console.log("MongoDb disconnected");
-      process.exit(0);
-    });
-
-  } catch (err) {
-    console.error("Startup error:", err);
+  } catch (e) {
+    console.error("Startup error:", e);
     process.exit(1);
   }
 };
