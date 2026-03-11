@@ -6,11 +6,21 @@ const Schema = mongoose.Schema;
 
 const SALT_WORK_FACTOR = 10;
 
+const validateEmail = (value) => {
+  const pattern =
+    /^([a-zA-Z0-9]+[_.]?[a-zA-Z0-9])+@([a-zA-Z]{2,5})\.([a-z]{2,3})(\.[a-z]{2,3})?$/;
+  if (!pattern.test(value)) return false;
+};
+
 const UserSchema = new Schema({
   email: {
     type: String,
     required: true,
     unique: true,
+    validate: {
+      validator: validateEmail,
+      message: "Email is not valid!",
+    },
   },
   password: {
     type: String,

@@ -5,7 +5,7 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useDispatch, useSelector } from "react-redux";
 import DrawerContent from "./DrawerContent";
-import { fetchCategories } from "../../../entities/category/model/categoriesActions";
+import { fetchCategoriesRequest } from "../../../entities/category/model/categoriesActions";
 
 const drawerWidth = 240;
 
@@ -15,7 +15,7 @@ const CategoriesSidebar = () => {
   const categories = useSelector((state) => state.categories.categories);
 
   useEffect(() => {
-    dispatch(fetchCategories());
+    dispatch(fetchCategoriesRequest());
   }, [dispatch]);
 
   const handleDrawerToggle = () => {

@@ -18,7 +18,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import {
   clearRegisterErrors,
   clearRegisterSuccess,
-  registerUser,
+  registerUserRequest,
 } from "../../../../entities/user/model/usersActions";
 import FormElement from "../../../../shared/ui/Form/FormElement/FormElement";
 
@@ -102,7 +102,7 @@ function RegisterForm() {
     if (!validateInputs()) return;
     dispatch(clearRegisterErrors());
     dispatch(
-      registerUser({
+      registerUserRequest({
         ...user,
         email: user.email.trim().toLowerCase(),
       }),

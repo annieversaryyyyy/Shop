@@ -1,5 +1,6 @@
 import { thunk } from "redux-thunk";
 import { setupInterceptors } from "../shared/api/baseApi";
+import createSagaMiddleware from "redux-saga";
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import { loadFromLocalStorage, saveToLocalStorage } from "./localStorage";
 import usersReducer, {
@@ -7,6 +8,7 @@ import usersReducer, {
 } from "../entities/user/model/usersReducer";
 import productsReducer from "../entities/product/model/productsReducer";
 import categoriesReducer from "../entities/category/model/categoriesReducer";
+import rootSagas from "./rootSagas";
 
 export const composeEnhancers =
   window.REDUX_DEVTOOLS_EXTENSION_COMPOSE || compose;
@@ -18,12 +20,17 @@ const rootReducer = combineReducers({
 });
 
 const persistedState = loadFromLocalStorage();
+const sagaMiddleware = createSagaMiddleware();
+
+const middleware = [thunk, sagaMiddleware];
 
 const store = createStore(
   rootReducer,
   persistedState,
-  composeEnhancers(applyMiddleware(thunk)),
+  composeEnhancers(applyMiddleware(...middleware)),
 );
+
+sagaMiddleware.run(rootSagas);
 
 store.subscribe(() => {
   saveToLocalStorage({

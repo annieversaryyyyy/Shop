@@ -43,7 +43,7 @@ router.post("/sessions", async (req, res) => {
   }
 
   user.generateToken();
-  await user.save({ validateBeforeSave: false });
+  await user.save();
   res.send({ message: "Username and password correct", user });
 });
 
@@ -55,7 +55,11 @@ router.post("/googleLogin", async (req, res) => {
       audience: config.google.clientId,
     });
     const { name, email, picture } = ticket.getPayload();
-    let user = await User.findOne({ email });
+
+    let user = await User.findOne({
+      email: req.body.email.trim().toLowerCase(),
+    });
+
     if (!user) {
       user = new User({
         email,
@@ -66,7 +70,7 @@ router.post("/googleLogin", async (req, res) => {
     }
 
     user.generateToken();
-    await user.save({ validateBeforeSave: false });
+    await user.save();
     return res.send({ message: "Login or register successful!", user });
   } catch (error) {
     return res.status(401).send({ message: "Google token incorrect!" });
@@ -81,7 +85,7 @@ router.delete("/sessions", async (req, res) => {
   if (!user) return res.send(success);
 
   user.generateToken();
-  await user.save({ validateBeforeSave: false });
+  await user.save();
   return res.send({ success, user });
 });
 

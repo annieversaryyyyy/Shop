@@ -14,12 +14,12 @@ export const CLEAR_LOGIN_SUCCESS = "CLEAR_LOGIN_SUCCESS";
 
 export const LOGOUT_USER = "LOGOUT_USER";
 
-const registerUserRequest = () => ({ type: REGISTER_USER_REQUEST });
-const registerUserSuccess = (user) => ({
+export const registerUserRequest = (userData) => ({ type: REGISTER_USER_REQUEST, payload: userData });
+export const registerUserSuccess = (user) => ({
   type: REGISTER_USER_SUCCESS,
   payload: user,
 });
-const registerUserFailure = (error) => ({
+export const registerUserFailure = (error) => ({
   type: REGISTER_USER_FAILURE,
   payload: error,
 });
@@ -38,21 +38,21 @@ const loginUserFailure = (error) => ({
 export const clearLoginErrors = () => ({ type: CLEAR_LOGIN_ERRORS });
 export const clearLoginSuccess = () => ({ type: CLEAR_LOGIN_SUCCESS });
 
-export const registerUser = (userData) => {
-  return async (dispatch) => {
-    try {
-      dispatch(registerUserRequest());
-      const response = await baseApi.post("/users", userData);
-      dispatch(registerUserSuccess(response.data));
-    } catch (e) {
-      if (e.response && e.response.data) {
-        dispatch(registerUserFailure(e.response.data));
-      } else {
-        dispatch(registerUserFailure({ global: "No internet" }));
-      }
-    }
-  };
-};
+// export const registerUser = (userData) => {
+//   return async (dispatch) => {
+//     try {
+//       dispatch(registerUserRequest());
+//       const response = await baseApi.post("/users", userData);
+//       dispatch(registerUserSuccess(response.data));
+//     } catch (e) {
+//       if (e.response && e.response.data) {
+//         dispatch(registerUserFailure(e.response.data));
+//       } else {
+//         dispatch(registerUserFailure({ global: "No internet" }));
+//       }
+//     }
+//   };
+// };
 
 export const loginUser = (userData) => {
   return async (dispatch) => {

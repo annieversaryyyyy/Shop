@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { createProduct } from "../../entities/product/model/productsActions";
-import { fetchCategories } from "../../entities/category/model/categoriesActions";
+import { fetchCategoriesRequest } from "../../entities/category/model/categoriesActions";
 
 function NewProduct() {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ function NewProduct() {
   const error = useSelector((state) => state.products.createProductsError);
 
   useEffect(() => {
-    dispatch(fetchCategories());
+    dispatch(fetchCategoriesRequest());
   }, [dispatch]);
 
   const onProductFormSubmit = async (productData) => {
