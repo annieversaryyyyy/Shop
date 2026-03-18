@@ -1,18 +1,20 @@
 import { put, takeEvery } from "redux-saga/effects";
 import baseApi from "../../../shared/api/baseApi";
 import {
-  FETCH_CATEGORIES_REQUEST,
+  fetchCategoriesRequest,
   fetchCategoriesSuccess,
 } from "./categoriesActions";
 
 export function* fetchCategories() {
   try {
-    const response = yield baseApi("/categories");
+    const response = yield baseApi.get("/categories");
     yield put(fetchCategoriesSuccess(response.data));
   } catch (error) {
     console.error("Fetch to categories failed!", error);
   }
 }
 
-const categoriesSagas = [takeEvery(FETCH_CATEGORIES_REQUEST, fetchCategories)];
+const categoriesSagas = [
+  takeEvery(fetchCategoriesRequest.type, fetchCategories),
+];
 export default categoriesSagas;

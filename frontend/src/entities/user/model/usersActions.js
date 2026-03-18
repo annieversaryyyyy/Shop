@@ -1,10 +1,11 @@
 import baseApi from "../../../shared/api/baseApi";
+import usersSlice from "./usersSlice";
 
-export const REGISTER_USER_REQUEST = "REGISTER_USER_REQUEST";
-export const REGISTER_USER_SUCCESS = "REGISTER_USER_SUCCESS";
-export const REGISTER_USER_FAILURE = "REGISTER_USER_FAILURE";
-export const CLEAR_REGISTER_ERRORS = "CLEAR_REGISTER_ERRORS";
-export const CLEAR_REGISTER_SUCCESS = "CLEAR_REGISTER_SUCCESS";
+// export const REGISTER_USER_REQUEST = "REGISTER_USER_REQUEST";
+// export const REGISTER_USER_SUCCESS = "REGISTER_USER_SUCCESS";
+// export const REGISTER_USER_FAILURE = "REGISTER_USER_FAILURE";
+// export const CLEAR_REGISTER_ERRORS = "CLEAR_REGISTER_ERRORS";
+// export const CLEAR_REGISTER_SUCCESS = "CLEAR_REGISTER_SUCCESS";
 
 export const LOGIN_USER_REQUEST = "LOGIN_USER_REQUEST";
 export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
@@ -14,17 +15,17 @@ export const CLEAR_LOGIN_SUCCESS = "CLEAR_LOGIN_SUCCESS";
 
 export const LOGOUT_USER = "LOGOUT_USER";
 
-export const registerUserRequest = (userData) => ({ type: REGISTER_USER_REQUEST, payload: userData });
-export const registerUserSuccess = (user) => ({
-  type: REGISTER_USER_SUCCESS,
-  payload: user,
-});
-export const registerUserFailure = (error) => ({
-  type: REGISTER_USER_FAILURE,
-  payload: error,
-});
-export const clearRegisterErrors = () => ({ type: CLEAR_REGISTER_ERRORS });
-export const clearRegisterSuccess = () => ({ type: CLEAR_REGISTER_SUCCESS });
+// export const registerUserRequest = (userData) => ({ type: REGISTER_USER_REQUEST, payload: userData });
+// export const registerUserSuccess = (user) => ({
+//   type: REGISTER_USER_SUCCESS,
+//   payload: user,
+// });
+// export const registerUserFailure = (error) => ({
+//   type: REGISTER_USER_FAILURE,
+//   payload: error,
+// });
+// export const clearRegisterErrors = () => ({ type: CLEAR_REGISTER_ERRORS });
+// export const clearRegisterSuccess = () => ({ type: CLEAR_REGISTER_SUCCESS });
 
 const loginUserRequest = () => ({ type: LOGIN_USER_REQUEST });
 const loginUserSuccess = (user) => ({
@@ -97,3 +98,11 @@ export const googleLogin = (data) => {
     }
   };
 };
+
+export const {
+  registerUserRequest,
+  registerUserSuccess,
+  registerUserFailure,
+  clearRegisterErrors,
+  clearRegisterSuccess,
+} = usersSlice.actions;

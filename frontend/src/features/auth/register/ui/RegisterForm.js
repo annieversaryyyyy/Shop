@@ -16,9 +16,9 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import {
+  registerUserRequest,
   clearRegisterErrors,
   clearRegisterSuccess,
-  registerUserRequest,
 } from "../../../../entities/user/model/usersActions";
 import FormElement from "../../../../shared/ui/Form/FormElement/FormElement";
 
@@ -36,6 +36,7 @@ function RegisterForm() {
   const registerSuccess = useSelector((state) => state.users.registerSuccess);
   const registerError = useSelector((state) => state.users.registerError);
   const navigate = useNavigate();
+
   useEffect(() => {
     if (registerSuccess) {
       toast.success("Registration successful");

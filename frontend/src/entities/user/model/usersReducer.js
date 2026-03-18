@@ -1,22 +1,14 @@
 import {
   CLEAR_LOGIN_ERRORS,
   CLEAR_LOGIN_SUCCESS,
-  CLEAR_REGISTER_ERRORS,
-  CLEAR_REGISTER_SUCCESS,
   LOGIN_USER_FAILURE,
   LOGIN_USER_REQUEST,
   LOGIN_USER_SUCCESS,
   LOGOUT_USER,
-  REGISTER_USER_FAILURE,
-  REGISTER_USER_REQUEST,
-  REGISTER_USER_SUCCESS,
 } from "./usersActions";
 
 export const initialState = {
   user: null,
-  registerSuccess: false, 
-  registerLoading: false,
-  registerError: null,
   loginSuccess: false,
   loginLoading: false,
   loginError: null,
@@ -24,28 +16,6 @@ export const initialState = {
 
 const usersReducer = (state = initialState, action) => {
   switch (action.type) {
-    case REGISTER_USER_REQUEST:
-      return { ...state, registerLoading: true };
-    case REGISTER_USER_SUCCESS:
-      return {
-        ...state,
-        registerLoading: false,
-        registerSuccess: true,
-        user: action.payload, 
-      };
-    case REGISTER_USER_FAILURE:
-      return {
-        ...state,
-        registerLoading: false,
-        registerError: action.payload,
-        registerSuccess: false,
-      };
-    case CLEAR_REGISTER_ERRORS:
-      return { ...state, registerError: null };
-    case CLEAR_REGISTER_SUCCESS:
-      // return { ...state, registerSuccess: false, user: action.payload };
-      return { ...state, registerSuccess: false };
-
     case LOGIN_USER_REQUEST:
       return { ...state, loginLoading: true };
     case LOGIN_USER_SUCCESS:

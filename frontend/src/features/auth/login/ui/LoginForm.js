@@ -39,9 +39,9 @@ function LoginForm() {
   const loginError = useSelector((state) => state.users.loginError);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    dispatch(clearLoginErrors());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(clearLoginErrors());
+  // }, [dispatch]);
 
   const [user, setUser] = useState({
     email: "",

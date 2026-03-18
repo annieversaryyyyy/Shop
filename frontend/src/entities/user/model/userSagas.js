@@ -1,7 +1,7 @@
 import { put, takeEvery } from "redux-saga/effects";
 import baseApi from "../../../shared/api/baseApi";
 import {
-  REGISTER_USER_REQUEST,
+  registerUserRequest,
   registerUserFailure,
   registerUserSuccess,
 } from "./usersActions";
@@ -15,5 +15,5 @@ export function* registerUserSaga({ payload: userData }) {
     yield put(registerUserFailure(e.response.data));
   }
 }
-const userSagas = [takeEvery(REGISTER_USER_REQUEST, registerUserSaga)];
+const userSagas = [takeEvery(registerUserRequest, registerUserSaga)];
 export default userSagas;
