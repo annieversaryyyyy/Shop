@@ -57,7 +57,7 @@ router.post("/googleLogin", async (req, res) => {
     const { name, email, picture } = ticket.getPayload();
 
     let user = await User.findOne({
-      email: req.body.email.trim().toLowerCase(),
+      email: email.trim().toLowerCase(),
     });
 
     if (!user) {

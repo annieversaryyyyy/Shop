@@ -1,27 +1,15 @@
-import { thunk } from "redux-thunk";
 import { setupInterceptors } from "../shared/api/baseApi";
 import createSagaMiddleware from "redux-saga";
-import { combineReducers, compose, createStore } from "redux";
 import { loadFromLocalStorage, saveToLocalStorage } from "./localStorage";
-import  {
-  initialState,
-} from "../entities/user/model/usersReducer";
-import productsReducer from "../entities/product/model/productsReducer";
 import rootSagas from "./rootSagas";
 import { configureStore } from "@reduxjs/toolkit";
-import categoriesSlice from "../entities/category/model/categoriesSlice";
-import usersSlice from "../entities/user/model/usersSlice";
-
-const rootReducer = combineReducers({
-  products: productsReducer,
-  users: usersSlice.reducer,
-  categories: categoriesSlice.reducer,
-});
+import rootReducer from "./rootReducer";
+import { initialState } from "../entities/user/model/usersSlice";
 
 const persistedState = loadFromLocalStorage();
 const sagaMiddleware = createSagaMiddleware();
 
-const middleware = [thunk, sagaMiddleware];
+// const middleware = [thunk, sagaMiddleware];
 
 const store = configureStore({
   reducer: rootReducer,

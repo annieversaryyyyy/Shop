@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { logoutUser } from "../../../entities/user/model/usersActions";
+import { logoutUser, logoutUserRequest } from "../../../entities/user/model/usersActions";
 import { useNavigate } from "react-router-dom";
 import {Avatar} from "@mui/material";
 
@@ -22,7 +22,7 @@ const UserMenu = ({ user }) => {
   };
 
   const handleLogout = async () => {
-    await dispatch(logoutUser());
+    await dispatch(logoutUserRequest());
     handleClose();
     navigate("/login");
   };

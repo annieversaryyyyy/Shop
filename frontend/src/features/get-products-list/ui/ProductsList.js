@@ -18,9 +18,7 @@ function ProductsList() {
     dispatch(fetchProducts(query));
   }, [dispatch, query]);
 
-  // if (!user) {
-  //   return <Navigate to="/login" replace />;
-  // }
+
 
   return (
     <div className="productsContainer">

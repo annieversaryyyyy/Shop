@@ -1,11 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  clearRegisterErrors,
-  clearRegisterSuccess,
-  registerUserFailure,
-  registerUserRequest,
-  registerUserSuccess,
-} from "./usersActions";
 
 const name = "users";
 
@@ -42,6 +35,38 @@ const usersSlice = createSlice({
     },
     clearRegisterErrors(state) {
       state.registerError = null;
+    },
+
+    loginUserRequest(state) {
+      state.loginLoading = true;
+      state.loginError = null;
+    },
+    loginUserSuccess(state, action) {
+      state.loginLoading = false;
+      state.loginSuccess = true;
+      state.user = action.payload;
+    },
+    loginUserFailure(state, action) {
+      state.loginLoading = false;
+      state.loginError = action.payload;
+      state.loginSuccess = false;
+    },
+    clearLoginSuccess(state) {
+      state.loginSuccess = false;
+    },
+    clearLoginErrors(state) {
+      state.loginError = null;
+    },
+    logoutUserRequest(state) {
+      state.loginLoading = true;
+    },
+    logoutUserSuccess(state) {
+      state.user = null;
+    },
+
+    googleLoginRequest(state) {
+      state.loginLoading = true;
+      state.loginError = null;
     },
   },
 });

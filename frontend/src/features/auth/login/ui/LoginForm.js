@@ -20,6 +20,7 @@ import {
   clearLoginErrors,
   clearLoginSuccess,
   loginUser,
+  loginUserRequest,
 } from "../../../../entities/user/model/usersActions";
 import FormElement from "../../../../shared/ui/Form/FormElement/FormElement";
 import GoogleAuth from "../../google-login/GoogleAuth";
@@ -93,7 +94,9 @@ function LoginForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(loginUser({ ...user, email: user.email.trim().toLowerCase() }));
+    dispatch(
+      loginUserRequest({ ...user, email: user.email.trim().toLowerCase() }),
+    );
   };
 
   return (
