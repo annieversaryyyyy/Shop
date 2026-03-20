@@ -20,7 +20,7 @@ Given("я введу данные:", (table) => {
 
 When("нажму на кнопку {string}", (buttonText) => {
   I.click(`//form//button[contains(text(), '${buttonText}')]`);
-  I.wait(10);
+  I.wait(2);
 });
 
 Then("я должен увидеть сообщение {string}", (text) => {

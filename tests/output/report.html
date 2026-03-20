@@ -1167,8 +1167,8 @@ body {
   <header class="report-header">
     <h1>CodeceptJS Test Report v3.7.7</h1>
     <div class="report-meta">
-      <span>Generated: 2026-03-20T13:54:11.531Z</span>
-      <span>Duration: 14.05s</span>
+      <span>Generated: 2026-03-20T14:02:35.185Z</span>
+      <span>Duration: 9.00s</span>
     </div>
   </header>
 
@@ -1193,15 +1193,15 @@ body {
       <div class="stats-cards">
         <div class="stat-card total">
           <h3>Total</h3>
-          <span class="stat-number">1</span>
+          <span class="stat-number">2</span>
         </div>
         <div class="stat-card passed">
           <h3>Passed</h3>
-          <span class="stat-number">0</span>
+          <span class="stat-number">2</span>
         </div>
         <div class="stat-card failed">
           <h3>Failed</h3>
-          <span class="stat-number">1</span>
+          <span class="stat-number">0</span>
         </div>
         <div class="stat-card pending">
           <h3>Skipped</h3>
@@ -1217,16 +1217,16 @@ body {
         </div>
       </div>
       <div class="metrics-summary">
-        <span>Pass Rate: <strong>0.0%</strong></span>
-        <span>Fail Rate: <strong>100.0%</strong></span>
+        <span>Pass Rate: <strong>100.0%</strong></span>
+        <span>Fail Rate: <strong>0.0%</strong></span>
       </div>
       <div class="pie-chart-container">
         <canvas id="statsChart" width="300" height="300"></canvas>
         <script>
           // Pie chart data will be rendered by JavaScript
           window.chartData = {
-            passed: 0,
-            failed: 1,
+            passed: 2,
+            failed: 0,
             pending: 0
           };
         </script>
@@ -1308,39 +1308,22 @@ body {
             </h3>
             <div class="feature-tests" id="feature-------------------------">
               
-                  <div class="test-item failed bdd-test" id="test-09785a8f" data-feature="Регистрация пользователя" data-status="failed" data-tags="" data-retries="0" data-type="bdd">
-                    <div class="test-header" onclick="toggleTestDetails('test-09785a8f')">
-                      <span class="test-status failed">●</span>
+                  <div class="test-item passed bdd-test" id="test-f3d80e4b" data-feature="Регистрация пользователя" data-status="passed" data-tags="" data-retries="0" data-type="bdd">
+                    <div class="test-header" onclick="toggleTestDetails('test-f3d80e4b')">
+                      <span class="test-status passed">●</span>
                       <div class="test-info">
-                        <h3 class="test-title">Scenario: </h3>
+                        <h3 class="test-title">Scenario: Регистрация нового пользователя</h3>
                         <div class="test-meta-line">
                           
-                          <span class="test-uid">v2Ot9pmoqULYpeYIbPJedIwtAMuM2VR5yTe0eW0c1a</span>
+                          <span class="test-uid">K9bZkSFUYb2QamuheHrIL3OB3IySCNeGdCBWY9pYZT</span>
                           <span class="test-duration">0ms</span>
                           
                           <span class="bdd-badge">Gherkin</span>
                         </div>
                       </div>
                     </div>
-                    <div class="test-details" id="details-test-09785a8f">
-                      <div class="error-message"><pre>Execution context is not available in detached frame or worker &quot;http://localhost:3010/&quot; (are you trying to evaluate?)
-
-Stack trace:
-at #executionContext (node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/IsolatedWorld.js:65:19)
-    at IsolatedWorld.evaluateHandle (node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/IsolatedWorld.js:85:45)
-    at CdpJSHandle.evaluateHandle (node_modules/puppeteer-core/lib/cjs/puppeteer/api/JSHandle.js:157:37)
-
-
-◯ File: file:///Users/anna.somikicloud.com/Desktop/shop/tests/features/auth.feature
-
-◯ Scenario Steps:
-✖ I.see(&quot;Registration successful&quot;) at ./step_definitions/steps.js:27:5
-✔ I.wait(10) at ./step_definitions/steps.js:23:5
-✔ I.click(&quot;//form//button[contains(text(), &#39;Sign up&#39;)]&quot;) at ./step_definitions/steps.js:22:5
-✔ I.fillField(&quot;password&quot;, &quot;test1234&quot;) at ./step_definitions/steps.js:17:7
-✔ I.fillField(&quot;displayName&quot;, &quot;test&quot;) at ./step_definitions/steps.js:17:7
-✔ I.fillField(&quot;email&quot;, &quot;test@gmail.com&quot;) at ./step_definitions/steps.js:17:7
-✔ I.amOnPage(&quot;/register&quot;) at ./step_definitions/steps.js:9:5</pre></div>
+                    <div class="test-details" id="details-test-f3d80e4b">
+                      
                       
       <div class="bdd-feature-section">
         <h4>Feature Information:</h4>
@@ -1405,6 +1388,85 @@ password        | test1234
                     </div>
                   </div>
                 
+                  <div class="test-item passed bdd-test" id="test-1890d3f4" data-feature="Регистрация пользователя" data-status="passed" data-tags="" data-retries="0" data-type="bdd">
+                    <div class="test-header" onclick="toggleTestDetails('test-1890d3f4')">
+                      <span class="test-status passed">●</span>
+                      <div class="test-info">
+                        <h3 class="test-title">Scenario: Логин существующего пользователя</h3>
+                        <div class="test-meta-line">
+                          
+                          <span class="test-uid">zXV1WDnvZXcqbi+CaQnY6+RnClw3SbtmXozsZi0W8E</span>
+                          <span class="test-duration">0ms</span>
+                          
+                          <span class="bdd-badge">Gherkin</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="test-details" id="details-test-1890d3f4">
+                      
+                      
+      <div class="bdd-feature-section">
+        <h4>Feature Information:</h4>
+        <div class="feature-info">
+          <div class="feature-name">Feature: Регистрация пользователя</div>
+          <div class="feature-description">    Как анонимный пользователь
+    Я должен иметь возможность зарегистрироваться на сайте
+    После ввода всех необходимых данных и отправки формы</div>
+          
+          <div class="feature-file">File: /Users/anna.somikicloud.com/Desktop/shop/tests/features/auth.feature</div>
+        </div>
+      </div>
+    
+                      
+                      
+                      
+                      
+                      
+                      
+      <div class="bdd-steps-section">
+        <h4>Scenario Steps:</h4>
+        <div class="bdd-steps-list">
+        <div class="bdd-step-item success">
+          <span class="step-status success">●</span>
+          <span class="bdd-keyword">Допустим</span>
+          <span class="bdd-step-text">я захожу на страницу &quot;login&quot;</span>
+          <span class="step-duration">0ms</span>
+          
+        </div>
+      
+        <div class="bdd-step-item success">
+          <span class="step-status success">●</span>
+          <span class="bdd-keyword">Если</span>
+          <span class="bdd-step-text">я введу данные:</span>
+          <span class="step-duration">0ms</span>
+          <div class="step-comment">
+email           | admin@gmail.com
+password        | admin1234      
+</div>
+        </div>
+      
+        <div class="bdd-step-item success">
+          <span class="step-status success">●</span>
+          <span class="bdd-keyword">И</span>
+          <span class="bdd-step-text">нажму на кнопку &quot;Sign in&quot;</span>
+          <span class="step-duration">0ms</span>
+          
+        </div>
+      
+        <div class="bdd-step-item success">
+          <span class="step-status success">●</span>
+          <span class="bdd-keyword">То</span>
+          <span class="bdd-step-text">я должен увидеть сообщение &quot;Login successful&quot;</span>
+          <span class="step-duration">0ms</span>
+          
+        </div>
+      </div>
+      </div>
+    
+                      
+                    </div>
+                  </div>
+                
             </div>
           </section>
         
@@ -1427,7 +1489,7 @@ password        | test1234
 
     <script>
         window.testData = {
-            stats: {"tests":1,"passes":0,"failures":1,"pending":0,"duration":14054,"failedHooks":0,"flaky":0,"artifacts":0},
+            stats: {"tests":2,"passes":2,"failures":0,"pending":0,"duration":8996,"failedHooks":0,"flaky":0,"artifacts":0},
             history: []
         };
     </script>
