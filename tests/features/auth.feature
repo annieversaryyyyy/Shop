@@ -10,6 +10,6 @@
     Если я введу данные:
         | email        | test@gmail.com    |
         | displayName  | test              |
-        | password     | test              |
+        | password     | test1234          |
     И нажму на кнопку "Sign up"
     То я должен увидеть сообщение "Registration successful"

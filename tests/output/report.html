@@ -1167,8 +1167,8 @@ body {
   <header class="report-header">
     <h1>CodeceptJS Test Report v3.7.7</h1>
     <div class="report-meta">
-      <span>Generated: 2026-03-20T08:14:14.071Z</span>
-      <span>Duration: 1.58s</span>
+      <span>Generated: 2026-03-20T09:37:29.345Z</span>
+      <span>Duration: 13.13s</span>
     </div>
   </header>
 
@@ -1323,18 +1323,19 @@ body {
                       </div>
                     </div>
                     <div class="test-details" id="details-test-09785a8f">
-                      <div class="error-message"><pre>Protocol error (Page.navigate): Cannot navigate to invalid URL
+                      <div class="error-message"><pre>expected web application to include &quot;Registration successful&quot;
 
 Stack trace:
-ProtocolError: 
-    at &lt;instance_members_initializer&gt; (node_modules/puppeteer-core/lib/cjs/puppeteer/common/CallbackRegistry.js:103:14)
-    at new Callback (node_modules/puppeteer-core/lib/cjs/puppeteer/common/CallbackRegistry.js:107:16)
-
-
 ◯ File: file:///Users/anna.somikicloud.com/Desktop/shop/tests/features/auth.feature
 
 ◯ Scenario Steps:
-✖ I.amOnPage(&quot;/register&quot;) at ./step_definitions/steps.js:9:5
+✖ I.see(&quot;Registration successful&quot;) at ./step_definitions/steps.js:27:5
+✔ I.wait(10) at ./step_definitions/steps.js:23:5
+✔ I.click(&quot;//form//button[contains(text(), &#39;Sign up&#39;)]&quot;) at ./step_definitions/steps.js:22:5
+✔ I.fillField(&quot;password&quot;, &quot;test1234&quot;) at ./step_definitions/steps.js:17:7
+✔ I.fillField(&quot;displayName&quot;, &quot;test&quot;) at ./step_definitions/steps.js:17:7
+✔ I.fillField(&quot;email&quot;, &quot;test@gmail.com&quot;) at ./step_definitions/steps.js:17:7
+✔ I.amOnPage(&quot;/register&quot;) at ./step_definitions/steps.js:9:5
 
 ◯ Artifacts:
 - screenshot: /Users/anna.somikicloud.com/Desktop/shop/tests/output/.failed.png</pre></div>
@@ -1367,6 +1368,34 @@ ProtocolError:
           <span class="step-duration">0ms</span>
           
         </div>
+      
+        <div class="bdd-step-item success">
+          <span class="step-status success">●</span>
+          <span class="bdd-keyword">Если</span>
+          <span class="bdd-step-text">я введу данные:</span>
+          <span class="step-duration">0ms</span>
+          <div class="step-comment">
+email           | test@gmail.com 
+displayName     | test           
+password        | test1234       
+</div>
+        </div>
+      
+        <div class="bdd-step-item success">
+          <span class="step-status success">●</span>
+          <span class="bdd-keyword">И</span>
+          <span class="bdd-step-text">нажму на кнопку &quot;Sign up&quot;</span>
+          <span class="step-duration">0ms</span>
+          
+        </div>
+      
+        <div class="bdd-step-item success">
+          <span class="step-status success">●</span>
+          <span class="bdd-keyword">То</span>
+          <span class="bdd-step-text">я должен увидеть сообщение &quot;Registration successful&quot;</span>
+          <span class="step-duration">0ms</span>
+          
+        </div>
       </div>
       </div>
     
@@ -1396,7 +1425,7 @@ ProtocolError:
 
     <script>
         window.testData = {
-            stats: {"tests":1,"passes":0,"failures":1,"pending":0,"duration":1580,"failedHooks":0,"flaky":0,"artifacts":0},
+            stats: {"tests":1,"passes":0,"failures":1,"pending":0,"duration":13125,"failedHooks":0,"flaky":0,"artifacts":0},
             history: []
         };
     </script>
