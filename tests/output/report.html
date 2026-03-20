@@ -1167,8 +1167,8 @@ body {
   <header class="report-header">
     <h1>CodeceptJS Test Report v3.7.7</h1>
     <div class="report-meta">
-      <span>Generated: 2026-03-20T09:44:41.446Z</span>
-      <span>Duration: 12.46s</span>
+      <span>Generated: 2026-03-20T13:54:11.531Z</span>
+      <span>Duration: 14.05s</span>
     </div>
   </header>
 
@@ -1323,9 +1323,14 @@ body {
                       </div>
                     </div>
                     <div class="test-details" id="details-test-09785a8f">
-                      <div class="error-message"><pre>expected web application to include &quot;Registration successful&quot;
+                      <div class="error-message"><pre>Execution context is not available in detached frame or worker &quot;http://localhost:3010/&quot; (are you trying to evaluate?)
 
 Stack trace:
+at #executionContext (node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/IsolatedWorld.js:65:19)
+    at IsolatedWorld.evaluateHandle (node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/IsolatedWorld.js:85:45)
+    at CdpJSHandle.evaluateHandle (node_modules/puppeteer-core/lib/cjs/puppeteer/api/JSHandle.js:157:37)
+
+
 ◯ File: file:///Users/anna.somikicloud.com/Desktop/shop/tests/features/auth.feature
 
 ◯ Scenario Steps:
@@ -1335,10 +1340,7 @@ Stack trace:
 ✔ I.fillField(&quot;password&quot;, &quot;test1234&quot;) at ./step_definitions/steps.js:17:7
 ✔ I.fillField(&quot;displayName&quot;, &quot;test&quot;) at ./step_definitions/steps.js:17:7
 ✔ I.fillField(&quot;email&quot;, &quot;test@gmail.com&quot;) at ./step_definitions/steps.js:17:7
-✔ I.amOnPage(&quot;/register&quot;) at ./step_definitions/steps.js:9:5
-
-◯ Artifacts:
-- screenshot: /Users/anna.somikicloud.com/Desktop/shop/tests/output/.failed.png</pre></div>
+✔ I.amOnPage(&quot;/register&quot;) at ./step_definitions/steps.js:9:5</pre></div>
                       
       <div class="bdd-feature-section">
         <h4>Feature Information:</h4>
@@ -1425,7 +1427,7 @@ password        | test1234
 
     <script>
         window.testData = {
-            stats: {"tests":1,"passes":0,"failures":1,"pending":0,"duration":12460,"failedHooks":0,"flaky":0,"artifacts":0},
+            stats: {"tests":1,"passes":0,"failures":1,"pending":0,"duration":14054,"failedHooks":0,"flaky":0,"artifacts":0},
             history: []
         };
     </script>
