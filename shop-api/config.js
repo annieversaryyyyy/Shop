@@ -2,12 +2,21 @@ const path = require("path");
 
 const rootPath = __dirname;
 
+let dbUrl = "mongodb://localhost/shop";
+let port = 8000;
+
+if (process.env.NODE_ENV === "test") {
+  dbUrl = "mongodb://localhost/shop-test";
+  port = 8010;
+}
+
 module.exports = {
   rootPath,
   uploadPath: path.join(rootPath, "public/uploads"),
+  port,
   mongo: {
     // db: "mongodb://localhost/shop",
-    db: process.env.MONGO_URL || "mongodb://localhost/shop",
+    db: dbUrl,
     options: {},
   },
   google: {

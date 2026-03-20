@@ -19,7 +19,6 @@ import { useNavigate } from "react-router-dom";
 import {
   clearLoginErrors,
   clearLoginSuccess,
-  loginUser,
   loginUserRequest,
 } from "../../../../entities/user/model/usersActions";
 import FormElement from "../../../../shared/ui/Form/FormElement/FormElement";
@@ -40,9 +39,9 @@ function LoginForm() {
   const loginError = useSelector((state) => state.users.loginError);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   dispatch(clearLoginErrors());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(clearLoginErrors());
+  }, [dispatch]);
 
   const [user, setUser] = useState({
     email: "",

@@ -3,9 +3,9 @@ import { useDispatch } from "react-redux";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { logoutUser, logoutUserRequest } from "../../../entities/user/model/usersActions";
+import { logoutUserRequest } from "../../../entities/user/model/usersActions";
 import { useNavigate } from "react-router-dom";
-import {Avatar} from "@mui/material";
+import { Avatar } from "@mui/material";
 
 const UserMenu = ({ user }) => {
   const dispatch = useDispatch();
