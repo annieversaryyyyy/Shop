@@ -48,6 +48,13 @@ const run = async () => {
       image: "fixtures/base.jpg",
       description: "Base silver ring.",
     },
+    {
+      title: "Traibl",
+      price: 100,
+      category: earringsCategory._id,
+      image: "fixtures/traibl.jpg",
+      description: "Elegant silver earrings.",
+    },
   );
 
   await User.create(

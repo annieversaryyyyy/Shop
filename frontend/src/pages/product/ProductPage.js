@@ -61,10 +61,6 @@ function Product() {
             <Divider sx={{ mb: 3 }} />
 
             <Box display="flex" justifyContent="center" gap={2}>
-              <Button variant="contained" size="large">
-                Add to cart
-              </Button>
-
               <Button component={Link} to="/" variant="outlined" size="large">
                 Back
               </Button>
