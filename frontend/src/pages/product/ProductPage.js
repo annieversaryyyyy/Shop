@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteProductRequest, fetchProductRequest } from "../../entities/product/model/productsActions";
-import { useParams } from "react-router-dom";
+import {
+  deleteProductRequest,
+  fetchProductRequest,
+} from "../../entities/product/model/productsActions";
+import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
@@ -9,15 +12,31 @@ import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
+import { toast } from "react-toastify";
 
 function Product() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const product = useSelector((state) => state.products.product);
+  const user = useSelector((state) => state.users.user);
+  const navigate = useNavigate();
+
+  const isAdmin = user?.role === "admin";
 
   useEffect(() => {
     dispatch(fetchProductRequest(id));
   }, [dispatch, id]);
+
+  const handleDelete = (id) => {
+    if (user?.role !== "admin") {
+      alert("You do not have permission to delete this product.");
+      return;
+    }
+    toast.success("Product deleted successfully");
+
+    navigate("/");
+    dispatch(deleteProductRequest(id));
+  };
 
   return (
     product && (
@@ -64,11 +83,11 @@ function Product() {
               <Button component={Link} to="/" variant="outlined" size="large">
                 Back
               </Button>
-              <button
-                onClick={() => dispatch(deleteProductRequest(product._id))}
-              >
-                Delete
-              </button>
+              {isAdmin && (
+                <Button onClick={() => handleDelete(product._id)}>
+                  Delete
+                </Button>
+              )}
             </Box>
           </Paper>
         </Grid>

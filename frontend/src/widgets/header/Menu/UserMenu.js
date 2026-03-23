@@ -44,7 +44,7 @@ const UserMenu = ({ user }) => {
             sx={{ width: 24, height: 24, marginRight: "5px" }}
           />
         )}
-        Hello, {user.email}!
+        Hello, {user.displayName || user.email}!
       </Button>
 
       <Menu

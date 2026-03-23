@@ -49,7 +49,7 @@ const ProductsLayout = ({ children }) => {
                 },
               }}
             >
-              Add
+              Add new product
             </Button>
           </Grid>
         )}
