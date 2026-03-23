@@ -1,10 +1,8 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import ProductForm from "../../features/create-product/ui/ProductForm";
 import { useDispatch, useSelector } from "react-redux";
-
 import { useNavigate } from "react-router-dom";
-
-import { createProduct } from "../../entities/product/model/productsActions";
+import { createProductRequest } from "../../entities/product/model/productsActions";
 import { fetchCategoriesRequest } from "../../entities/category/model/categoriesActions";
 
 function NewProduct() {
@@ -18,7 +16,7 @@ function NewProduct() {
   }, [dispatch]);
 
   const onProductFormSubmit = async (productData) => {
-    const result = await dispatch(createProduct(productData));
+    const result = await dispatch(createProductRequest(productData));
 
     if (result) {
       navigate("/");

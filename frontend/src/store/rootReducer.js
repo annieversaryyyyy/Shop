@@ -1,13 +1,13 @@
 import { combineReducers } from "redux";
 
-import productsReducer from "../entities/product/model/productsReducer";
 import categoriesSlice from "../entities/category/model/categoriesSlice";
 import usersSlice from "../entities/user/model/usersSlice";
+import productsSlice from "../entities/product/model/productsSlice";
 
 const rootReducer = combineReducers({
-  products: productsReducer,
   users: usersSlice.reducer,
   categories: categoriesSlice.reducer,
+  products: productsSlice.reducer,
 });
 
 export default rootReducer;

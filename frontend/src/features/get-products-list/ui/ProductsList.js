@@ -4,7 +4,7 @@ import { Box, CircularProgress, Typography } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./ProductsList.css";
-import { fetchProducts } from "../../../entities/product/model/productsActions";
+import { fetchProductsRequest } from "../../../entities/product/model/productsActions";
 import ProductsLayout from "../../../widgets/ products-layout/ui/ProductsLayout";
 import ProductItem from "../../../entities/product/ui/ProductItem/ProductItem";
 
@@ -15,7 +15,7 @@ function ProductsList() {
   const query = useLocation().search;
 
   useEffect(() => {
-    dispatch(fetchProducts(query));
+    dispatch(fetchProductsRequest(query));
   }, [dispatch, query]);
 
 

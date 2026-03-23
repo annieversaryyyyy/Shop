@@ -92,7 +92,7 @@ router.post(
   },
 );
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", auth, permit("admin"), async (req, res) => {
   const productData = {
     title: req.body.title,
     price: req.body.price,
@@ -117,6 +117,22 @@ router.put("/:id", async (req, res) => {
     res.send(updateProduct);
   } catch {
     res.sendStatus(500);
+  }
+});
+
+router.delete("/:id", auth, permit("admin"), async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+
+    if (!product) {
+      return res.status(404).send({ message: "Product not found!" });
+    }
+
+    await Product.deleteOne({ _id: req.params.id });
+
+    res.send({ message: "Product deleted successfully" });
+  } catch (e) {
+    res.status(500).send(e);
   }
 });
 

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProduct } from "../../entities/product/model/productsActions";
+import { deleteProductRequest, fetchProductRequest } from "../../entities/product/model/productsActions";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Paper from "@mui/material/Paper";
@@ -16,7 +16,7 @@ function Product() {
   const product = useSelector((state) => state.products.product);
 
   useEffect(() => {
-    dispatch(fetchProduct(id));
+    dispatch(fetchProductRequest(id));
   }, [dispatch, id]);
 
   return (
@@ -64,6 +64,11 @@ function Product() {
               <Button component={Link} to="/" variant="outlined" size="large">
                 Back
               </Button>
+              <button
+                onClick={() => dispatch(deleteProductRequest(product._id))}
+              >
+                Delete
+              </button>
             </Box>
           </Paper>
         </Grid>

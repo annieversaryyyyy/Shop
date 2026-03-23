@@ -1,5 +1,8 @@
 # Jewelry Shop
 
+<p align="center">
+  <img src="./frontend/src/shared/assets/shopScreen.png" width="600" />
+</p>
 Full-stack web application of a jewelry online store. The project allows users to browse products, view detailed information, and interact with the shopping cart. It also includes user authentication and role-based access (admin/user).
 
 ---
