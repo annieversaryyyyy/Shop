@@ -36,9 +36,14 @@ Full-stack web application of a jewelry online store. The project allows users t
 - Add products to cart
 
 ### Admin
-- Create, edit and delete products (CRUD)
-- Manage categories
+- Create, edit and delete products 
+- Manage categories (in process)
 - Role-based access control
+
+### Access
+Admin:
+- Email: admin@gmail.com
+- Password: admin1234
 
 ---
 
