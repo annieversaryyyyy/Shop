@@ -84,7 +84,12 @@ function Product() {
                 Back
               </Button>
               {isAdmin && (
-                <Button onClick={() => handleDelete(product._id)}>
+                <Button
+                  variant="contained"
+                  color="error"
+                  size="large"
+                  onClick={() => handleDelete(product._id)}
+                >
                   Delete
                 </Button>
               )}

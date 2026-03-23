@@ -47,17 +47,17 @@ const productsSlice = createSlice({
     },
 
     deleteProductRequest: (state) => {
-        state.deleteLoading = true;
-        state.deleteError = null;
+      state.deleteLoading = true;
+      state.deleteError = null;
     },
-    deleteProductSuccess: (state, {payload: id}) => {
-        state.deleteLoading = false;
-        state.products = state.products.filter(product => product.id !== id);
+    deleteProductSuccess: (state, { payload: id }) => {
+      state.deleteLoading = false;
+      state.products = state.products.filter((product) => product.id !== id);
     },
-    deleteProductFailure: (state, {payload: error}) => {
-        state.deleteLoading = false;
-        state.deleteError = error
-    }
+    deleteProductFailure: (state, { payload: error }) => {
+      state.deleteLoading = false;
+      state.deleteError = error;
+    },
   },
 });
 export default productsSlice;

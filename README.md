@@ -47,6 +47,7 @@ Full-stack web application of a jewelry online store. The project allows users t
 Admin:
 - Email: admin@gmail.com
 - Password: admin1234
+  
 User: 
 - Email: user@gmail.com
 - Password: user1234
