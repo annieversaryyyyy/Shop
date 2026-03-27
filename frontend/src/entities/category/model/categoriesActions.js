@@ -4,6 +4,7 @@ export const {
   fetchCategoriesRequest,
   fetchCategoriesSuccess,
   fetchCategoriesFailure,
+  createCategoryRequest,
+  createCategorySuccess,
+  createCategoryFailure,
 } = categoriesSlice.actions;
-
-// export default categoriesSlice.reducer;
