@@ -1,24 +1,13 @@
-import { useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import { Box, CircularProgress, Typography } from "@mui/material";
-import { useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import "./ProductsList.css";
-import { fetchProductsRequest } from "../../../entities/product/model/productsActions";
 import ProductsLayout from "../../../widgets/ products-layout/ui/ProductsLayout";
 import ProductItem from "../../../entities/product/ui/ProductItem/ProductItem";
+import { useSelector } from "react-redux";
 
 function ProductsList() {
-  const dispatch = useDispatch();
   const loading = useSelector((state) => state.products.fetchLoading);
   const products = useSelector((state) => state.products.products);
-  const query = useLocation().search;
-
-  useEffect(() => {
-    dispatch(fetchProductsRequest(query));
-  }, [dispatch, query]);
-
-
 
   return (
     <div className="productsContainer">

@@ -27,7 +27,7 @@ router.post("/", async (req, res) => {
 
   try {
     await category.save();
-    res.send(category)
+    res.send(category);
   } catch (err) {
     if (err.code === 11000) {
       return res.status(400).send({

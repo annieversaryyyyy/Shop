@@ -1,6 +1,11 @@
 import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#610c0c",
+    },
+  },
   components: {
     MuiTextField: {
       defaultProps: {
@@ -14,6 +19,7 @@ const theme = createTheme({
       fontSize: "30px",
     },
   },
+
   spacing: 8,
 });
 export default theme;

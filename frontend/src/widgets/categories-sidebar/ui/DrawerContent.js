@@ -49,6 +49,7 @@ const DrawerContent = ({ categories }) => {
                   }}
                 />
               </ListItemButton>
+              
             </ListItem>
             <Divider sx={{ backgroundColor: "#f4efef" }} />
           </div>

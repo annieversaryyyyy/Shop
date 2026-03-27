@@ -1,0 +1,25 @@
+.icon-btn {
+  display: inline-flex;
+  width: fit-content;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 50%;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.icon-btn:hover {
+  background-color: rgba(166, 16, 16, 0.05);
+  transform: scale(1.1);
+}
+.icon-btn svg {
+  display: block;
+}
+
+.categories-button {
+  display: flex;
+  justify-content: center;
+}
