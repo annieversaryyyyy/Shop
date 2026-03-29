@@ -23,9 +23,7 @@ function Product() {
   const deleteProductSuccess = useSelector(
     (state) => state.products.deleteSuccess,
   );
-  const deleteProductError = useSelector(
-    (state) => state.products.deleteError,
-  );
+  const deleteProductError = useSelector((state) => state.products.deleteError);
   const navigate = useNavigate();
 
   const isAdmin = user?.role === "admin";

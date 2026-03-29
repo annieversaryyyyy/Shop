@@ -15,11 +15,12 @@ const CategoriesSidebar = () => {
   const dispatch = useDispatch();
   const [mobileOpen, setMobileOpen] = useState(false);
   const categories = useSelector((state) => state.categories.categories);
-  const users = useSelector((state) => state.users.user);
+  const user = useSelector((state) => state.users.user);
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const isAdmin = user?.role === "admin";
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -70,11 +71,10 @@ const CategoriesSidebar = () => {
       >
         <DrawerContent categories={categories} />
 
-        {users?.role === "admin" && (
+        {isAdmin && (
           <div className="categories-button">
             <IconButton className="icon-btn" onClick={handleOpen}>
               <svg
-                xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"

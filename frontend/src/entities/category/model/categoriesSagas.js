@@ -8,6 +8,7 @@ import {
   createCategoryFailure,
   deleteCategoryRequest,
   deleteCategorySuccess,
+  deleteCategoryFailure,
 } from "./categoriesActions";
 
 export function* fetchCategories() {
@@ -36,6 +37,7 @@ export function* deleteCategory({ payload: id }) {
     yield baseApi.delete("categories/" + id);
     yield put(deleteCategorySuccess(id));
   } catch (error) {
+    yield put(deleteCategoryFailure(error.message));
     console.error("Deleting category failed!", error);
   }
 }
