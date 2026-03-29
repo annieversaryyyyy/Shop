@@ -1,16 +1,15 @@
-import { toast } from "react-toastify";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
-import { deleteCategoryRequest } from "../../../entities/category/model/categoriesActions";
 import DeleteIcon from "../../../shared/ui/DeleteIcon/DeleteIcon";
+import { useDeleteCategory } from "../../../features/delete-category/model/useDeleteCategory";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -21,14 +20,9 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 const DrawerContent = ({ categories }) => {
-  const dispatch = useDispatch();
   const user = useSelector((state) => state.users.user);
   const isAdmin = user?.role === "admin";
-
-  const handleDeleteCategory = (categoryId) => {
-    dispatch(deleteCategoryRequest(categoryId));
-    toast.success("Category deleted successfully");
-  };
+  const { deleteCategory } = useDeleteCategory();
 
   return (
     <>
@@ -64,7 +58,7 @@ const DrawerContent = ({ categories }) => {
 
               {isAdmin && (
                 <IconButton
-                  onClick={(e) => handleDeleteCategory(category._id, e)}
+                  onClick={() => deleteCategory(category._id)}
                   sx={{
                     position: "absolute",
                     right: 8,

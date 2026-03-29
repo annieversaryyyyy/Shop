@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import {
   deleteProductRequest,
   resetDeleteProductState,
-} from "../../entities/product/model/productsActions";
+} from "../../../entities/product/model/productsActions";
 
 export const useDeleteProduct = () => {
   const dispatch = useDispatch();

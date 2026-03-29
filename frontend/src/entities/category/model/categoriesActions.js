@@ -11,4 +11,5 @@ export const {
   deleteCategoryRequest,
   deleteCategorySuccess,
   deleteCategoryFailure,
+  resetDeleteCategoryState,
 } = categoriesSlice.actions;

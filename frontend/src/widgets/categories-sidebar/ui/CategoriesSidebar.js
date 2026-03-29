@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useDispatch, useSelector } from "react-redux";
 import DrawerContent from "./DrawerContent";
-import { createCategoryRequest } from "../../../entities/category/model/categoriesActions";
+import {
+  createCategoryRequest,
+  resetDeleteCategoryState,
+} from "../../../entities/category/model/categoriesActions";
 import "./CategoriesSidebar.css";
 import { CreateCategoryModal } from "../../../features/create-category/ui/CreateCategoryModal.js";
-
+import { toast } from "react-toastify";
 const drawerWidth = 240;
 
 const CategoriesSidebar = () => {
@@ -29,6 +32,15 @@ const CategoriesSidebar = () => {
   const handleCreateCategory = (data) => {
     dispatch(createCategoryRequest(data));
   };
+
+  const success = useSelector((state) => state.categories.deleteSuccess);
+
+  useEffect(() => {
+    if (success) {
+      toast.success("Category deleted successfully");
+      dispatch(resetDeleteCategoryState());
+    }
+  }, [success, dispatch]);
 
   return (
     <>
@@ -74,12 +86,7 @@ const CategoriesSidebar = () => {
         {isAdmin && (
           <div className="categories-button">
             <IconButton className="icon-btn" onClick={handleOpen}>
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-              >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path
                   d="M11 8C11 7.44772 11.4477 7 12 7C12.5523 7 13 7.44772 13 8V11H16C16.5523 11 17 11.4477 17 12C17 12.5523 16.5523 13 16 13H13V16C13 16.5523 12.5523 17 12 17C11.4477 17 11 16.5523 11 16V13H8C7.44771 13 7 12.5523 7 12C7 11.4477 7.44772 11 8 11H11V8Z"
                   fill="#0F0F0F"

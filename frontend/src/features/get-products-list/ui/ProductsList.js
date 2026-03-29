@@ -3,7 +3,7 @@ import { Box, CircularProgress, Typography } from "@mui/material";
 import "./ProductsList.css";
 import ProductItem from "../../../entities/product/ui/ProductItem/ProductItem";
 import { useSelector } from "react-redux";
-import { useDeleteProduct } from "../../delete-product/useDeleteProduct";
+import { useDeleteProduct } from "../../delete-product/model/useDeleteProduct";
 import ProductsLayout from "../../../widgets/products-layout/ui/ProductsLayout";
 
 function ProductsList() {

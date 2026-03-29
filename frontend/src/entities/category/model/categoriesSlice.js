@@ -9,6 +9,7 @@ const categoriesSlice = createSlice({
     createSuccess: false,
     createError: null,
     createLoading: false,
+    deleteSuccess: false,
     deleteLoading: false,
     deleteError: null,
   },
@@ -44,9 +45,10 @@ const categoriesSlice = createSlice({
       state.createSuccess = false;
       state.createError = null;
     },
-    deleteCategoryRequest(state, action) {
+    deleteCategoryRequest(state) {
       state.deleteLoading = true;
       state.deleteError = null;
+      state.deleteSuccess = false;
     },
     deleteCategorySuccess(state, action) {
       state.deleteError = null;
@@ -54,10 +56,16 @@ const categoriesSlice = createSlice({
       state.categories = state.categories.filter(
         (category) => category._id !== action.payload,
       );
+      state.deleteSuccess = true;
     },
     deleteCategoryFailure(state, action) {
       state.deleteError = action.payload;
       state.deleteLoading = false;
+    },
+    resetDeleteCategoryState: (state) => {
+      state.deleteLoading = false;
+      state.deleteError = null;
+      state.deleteSuccess = false;
     },
   },
 });
