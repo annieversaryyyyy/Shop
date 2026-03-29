@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createCategory } from "./categoriesSagas";
 const name = "categories";
 const categoriesSlice = createSlice({
   name,
@@ -7,6 +6,9 @@ const categoriesSlice = createSlice({
     categories: [],
     fetchLoading: false,
     fetchError: null,
+    createSuccess: false,
+    createError: null,
+    createLoading: false,
   },
   reducers: {
     fetchCategoriesRequest(state) {
@@ -22,16 +24,23 @@ const categoriesSlice = createSlice({
       state.fetchError = action.payload;
     },
     createCategoryRequest(state) {
-      state.fetchLoading = true;
-      state.fetchError = null;
+      state.createLoading = true;
+      state.createError = null;
     },
     createCategorySuccess(state, action) {
-      state.fetchLoading = false;
+      state.createSuccess = true;
+      state.createError = null;
+      state.createLoading = false;
       state.categories.push(action.payload);
     },
     createCategoryFailure(state, action) {
-      state.fetchLoading = false;
-      state.fetchError = action.payload;
+      state.createLoading = false;
+      state.createError = action.payload;
+      state.createSuccess = false;
+    },
+    resetCreateCategoryState(state) {
+      state.createSuccess = false;
+      state.createError = null;
     },
   },
 });

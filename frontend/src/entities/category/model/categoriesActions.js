@@ -7,4 +7,5 @@ export const {
   createCategoryRequest,
   createCategorySuccess,
   createCategoryFailure,
+  resetCreateCategoryState,
 } = categoriesSlice.actions;
