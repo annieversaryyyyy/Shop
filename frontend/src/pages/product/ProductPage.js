@@ -20,39 +20,10 @@ function Product() {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.products.product);
   const user = useSelector((state) => state.users.user);
-  const deleteProductSuccess = useSelector(
-    (state) => state.products.deleteSuccess,
-  );
-  const deleteProductError = useSelector((state) => state.products.deleteError);
-  const navigate = useNavigate();
-
-  const isAdmin = user?.role === "admin";
 
   useEffect(() => {
     dispatch(fetchProductRequest(id));
   }, [dispatch, id]);
-
-  const handleDelete = (_id) => {
-    if (user?.role !== "admin") {
-      alert("You do not have permission to delete this product.");
-      return;
-    }
-    dispatch(deleteProductRequest(_id));
-  };
-
-  useEffect(() => {
-    if (deleteProductSuccess) {
-      toast.success("Product deleted successfully");
-      navigate("/");
-      dispatch(resetDeleteProductState());
-    }
-  }, [deleteProductSuccess, dispatch, navigate]);
-
-  useEffect(() => {
-    if (deleteProductError) {
-      toast.error("Failed to delete product");
-    }
-  }, [deleteProductError]);
 
   return (
     product && (
@@ -99,16 +70,6 @@ function Product() {
               <Button component={Link} to="/" variant="outlined" size="large">
                 Back
               </Button>
-              {isAdmin && (
-                <Button
-                  variant="contained"
-                  color="error"
-                  size="large"
-                  onClick={() => handleDelete(product._id)}
-                >
-                  Delete
-                </Button>
-              )}
             </Box>
           </Paper>
         </Grid>

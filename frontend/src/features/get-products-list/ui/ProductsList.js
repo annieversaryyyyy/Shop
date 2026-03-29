@@ -1,14 +1,17 @@
 import Grid from "@mui/material/Grid";
 import { Box, CircularProgress, Typography } from "@mui/material";
 import "./ProductsList.css";
-import ProductsLayout from "../../../widgets/ products-layout/ui/ProductsLayout";
 import ProductItem from "../../../entities/product/ui/ProductItem/ProductItem";
 import { useSelector } from "react-redux";
+import { useDeleteProduct } from "../../delete-product/useDeleteProduct";
+import ProductsLayout from "../../../widgets/products-layout/ui/ProductsLayout";
 
 function ProductsList() {
   const loading = useSelector((state) => state.products.fetchLoading);
   const products = useSelector((state) => state.products.products);
-
+  const user = useSelector((state) => state.users.user);
+  const isAdmin = user?.role === "admin";
+  const { handleDelete } = useDeleteProduct();
   return (
     <div className="productsContainer">
       <ProductsLayout>
@@ -57,6 +60,8 @@ function ProductsList() {
                   title={product.title}
                   price={product.price}
                   image={product.image}
+                  onDelete={handleDelete}
+                  isAdmin={isAdmin}
                 />
               ))}
             </Grid>

@@ -11,8 +11,10 @@ import Typography from "@mui/material/Typography";
 import imageNotAvailable from "../../../../shared/assets/notAvailable.jpg";
 import { apiUrl } from "../../../../shared/config/config";
 import CardMedia from "@mui/material/CardMedia";
+import DeleteIcon from "../../../../shared/ui/DeleteIcon/DeleteIcon";
+import { Box } from "@mui/material";
 
-function ProductItem({ id, title, price, image }) {
+function ProductItem({ id, title, price, image, onDelete, isAdmin }) {
   let cardImage = imageNotAvailable;
 
   if (image) {
@@ -23,6 +25,7 @@ function ProductItem({ id, title, price, image }) {
     <Grid item xs={12} lg={3} display="flex" justifyContent="center">
       <Card
         sx={{
+          position: "relative",
           maxWidth: 420,
           width: "100%",
           borderRadius: 4,
@@ -30,9 +33,14 @@ function ProductItem({ id, title, price, image }) {
           backgroundColor: "#000000",
           transition: "0.3s ease",
           cursor: "pointer",
+
           "&:hover": {
             transform: "translateY(-8px)",
             boxShadow: 12,
+          },
+
+          "&:hover .delete-btn": {
+            opacity: 1,
           },
         }}
       >
@@ -45,7 +53,33 @@ function ProductItem({ id, title, price, image }) {
             textAlign: "center",
           }}
         />
-        <CardMedia title={title} height="220" image={cardImage} />
+
+        <Box
+          sx={{
+         
+            "&:hover .MuiIconButton-root": {
+              opacity: 1,
+            },
+          }}
+        >
+          {isAdmin && (
+            <IconButton
+              className="delete-btn"
+              onClick={(e) => onDelete(id)}
+              sx={{
+                position: "absolute",
+                right: 8,
+                top: 8,
+                transform: "none",
+                padding: "4px",
+                opacity: 0,
+              }}
+              size="small"
+            >
+              <DeleteIcon color="#ffffff"  />
+            </IconButton>
+          )}
+        </Box>
 
         <CardContent sx={{ textAlign: "center" }}>
           <Typography
