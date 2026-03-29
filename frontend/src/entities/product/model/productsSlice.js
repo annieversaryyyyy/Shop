@@ -10,6 +10,7 @@ const productsSlice = createSlice({
     fetchError: null,
     createProductError: null,
     createProductLoading: false,
+    deleteSuccess: false,
     deleteLoading: false,
     deleteError: null,
   },
@@ -52,11 +53,18 @@ const productsSlice = createSlice({
     },
     deleteProductSuccess: (state, { payload: id }) => {
       state.deleteLoading = false;
-      state.products = state.products.filter((product) => product.id !== id);
+      state.products = state.products.filter((product) => product._id !== id);
+      state.deleteSuccess = true;
+      state.deleteError = null;
     },
     deleteProductFailure: (state, { payload: error }) => {
       state.deleteLoading = false;
       state.deleteError = error;
+    },
+    resetDeleteProductState: (state) => {
+      state.deleteLoading = false;
+      state.deleteError = null;
+      state.deleteSuccess = false;
     },
   },
 });

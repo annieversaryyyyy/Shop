@@ -1,5 +1,7 @@
 const express = require("express");
 const Category = require("../models/Category");
+const auth = require("../middleware/auth");
+const permit = require("../middleware/permit");
 
 const router = express.Router();
 
@@ -12,7 +14,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", auth, permit("admin"), async (req, res) => {
   const { title, description } = req.body;
 
   if (!title) {
@@ -35,6 +37,21 @@ router.post("/", async (req, res) => {
       });
     }
     return res.status(500).send({ error: "Server error" });
+  }
+});
+
+router.delete("/:id", auth, permit("admin"), async (req, res) => {
+  try {
+    const category = await Category.findById(req.params.id);
+
+    if (!category) {
+      return res.status(404).send({ message: "Category not found!" });
+    }
+
+    await Category.deleteOne({ _id: req.params.id });
+    res.send({ message: "Category deleted successfully" });
+  } catch (error) {
+    res.status(500).send(error);
   }
 });
 

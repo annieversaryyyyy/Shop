@@ -40,7 +40,7 @@ Full-stack web application of a jewelry online store. The project allows users t
 
 ### Admin
 - Create, edit and delete products 
-- Manage categories (in process)
+- Manage categories 
 - Role-based access control
 
 ### Access

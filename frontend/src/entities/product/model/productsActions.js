@@ -12,4 +12,5 @@ export const {
   deleteProductSuccess,
   deleteProductRequest,
   deleteProductFailure,
+  resetDeleteProductState,
 } = productsSlice.actions;

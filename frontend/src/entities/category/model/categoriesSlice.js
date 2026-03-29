@@ -9,6 +9,8 @@ const categoriesSlice = createSlice({
     createSuccess: false,
     createError: null,
     createLoading: false,
+    deleteLoading: false,
+    deleteError: null,
   },
   reducers: {
     fetchCategoriesRequest(state) {
@@ -41,6 +43,21 @@ const categoriesSlice = createSlice({
     resetCreateCategoryState(state) {
       state.createSuccess = false;
       state.createError = null;
+    },
+    deleteCategoryRequest(state, action) {
+      state.deleteLoading = true;
+      state.deleteError = null;
+    },
+    deleteCategorySuccess(state, action) {
+      state.deleteError = null;
+      state.deleteLoading = false;
+      state.categories = state.categories.filter(
+        (category) => category._id !== action.payload,
+      );
+    },
+    deleteCategoryFailure(state, action) {
+      state.deleteError = action.payload;
+      state.deleteLoading = false;
     },
   },
 });

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   deleteProductRequest,
   fetchProductRequest,
+  resetDeleteProductState,
 } from "../../entities/product/model/productsActions";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -19,6 +20,12 @@ function Product() {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.products.product);
   const user = useSelector((state) => state.users.user);
+  const deleteProductSuccess = useSelector(
+    (state) => state.products.deleteSuccess,
+  );
+  const deleteProductError = useSelector(
+    (state) => state.products.deleteError,
+  );
   const navigate = useNavigate();
 
   const isAdmin = user?.role === "admin";
@@ -27,16 +34,27 @@ function Product() {
     dispatch(fetchProductRequest(id));
   }, [dispatch, id]);
 
-  const handleDelete = (id) => {
+  const handleDelete = (_id) => {
     if (user?.role !== "admin") {
       alert("You do not have permission to delete this product.");
       return;
     }
-    toast.success("Product deleted successfully");
-
-    navigate("/");
-    dispatch(deleteProductRequest(id));
+    dispatch(deleteProductRequest(_id));
   };
+
+  useEffect(() => {
+    if (deleteProductSuccess) {
+      toast.success("Product deleted successfully");
+      navigate("/");
+      dispatch(resetDeleteProductState());
+    }
+  }, [deleteProductSuccess, dispatch, navigate]);
+
+  useEffect(() => {
+    if (deleteProductError) {
+      toast.error("Failed to delete product");
+    }
+  }, [deleteProductError]);
 
   return (
     product && (

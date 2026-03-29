@@ -6,6 +6,8 @@ import {
   createCategoryRequest,
   createCategorySuccess,
   createCategoryFailure,
+  deleteCategoryRequest,
+  deleteCategorySuccess,
 } from "./categoriesActions";
 
 export function* fetchCategories() {
@@ -29,8 +31,18 @@ export function* createCategory({ payload: categoryData }) {
   }
 }
 
+export function* deleteCategory({ payload: id }) {
+  try {
+    yield baseApi.delete("categories/" + id);
+    yield put(deleteCategorySuccess(id));
+  } catch (error) {
+    console.error("Deleting category failed!", error);
+  }
+}
+
 const categoriesSagas = [
   takeEvery(fetchCategoriesRequest.type, fetchCategories),
   takeEvery(createCategoryRequest.type, createCategory),
+  takeEvery(deleteCategoryRequest.type, deleteCategory),
 ];
 export default categoriesSagas;
