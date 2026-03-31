@@ -7,9 +7,10 @@ Full-stack web application of a jewelry online store. The project allows users t
 
 ---
 
-##  Tech Stack
+## Tech Stack
 
 ### Frontend
+
 - React
 - Redux Toolkit
 - Redux Saga
@@ -17,12 +18,14 @@ Full-stack web application of a jewelry online store. The project allows users t
 - HTML, CSS, SCSS
 
 ### Backend
+
 - Node.js
 - Express
 - MongoDB
 - Mongoose
 
 ### Other
+
 - REST API
 - Google OAuth (authentication)
 - CodeceptJS (testing)
@@ -32,29 +35,35 @@ Full-stack web application of a jewelry online store. The project allows users t
 ## Features
 
 ### User
+
 - Registration and login
 - Authentication via Google
+- Manage favorites (add/remove products)
 - Browse products
 - View product details
-- Add products to cart
+- Add products to cart (in process)
 
 ### Admin
-- Create, edit and delete products 
-- Manage categories 
+- Manage products (create/delete)
+- Manage categories
 - Role-based access control
 
 ### Access
+
 Admin:
+
 - Email: admin@gmail.com
 - Password: admin1234
-  
-User: 
+
+User:
+
 - Email: user@gmail.com
 - Password: user1234
 
 ---
 
-##  Authentication
+## Authentication
+
 - JWT-based authentication
 - Google OAuth integration
 
@@ -63,6 +72,7 @@ User:
 ## Getting Started
 
 ### 1. Clone the repository
+
 ```bash
 git clone https://github.com/annieversaryyyyy/Shop.git
 cd Shop
@@ -77,3 +87,4 @@ cd shop-api
 npm install
 npm run seed //fixtures
 npm run dev
+```
