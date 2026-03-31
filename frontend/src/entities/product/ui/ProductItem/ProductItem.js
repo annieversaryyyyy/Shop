@@ -1,18 +1,19 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Card from "@mui/material/Card";
+import { Box } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardHeader from "@mui/material/CardHeader";
 import Grid from "@mui/material/Grid";
+import CardMedia from "@mui/material/CardMedia";
 import IconButton from "@mui/material/IconButton";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Typography from "@mui/material/Typography";
 import imageNotAvailable from "../../../../shared/assets/notAvailable.jpg";
 import { apiUrl } from "../../../../shared/config/config";
-import CardMedia from "@mui/material/CardMedia";
-import DeleteIcon from "../../../../shared/ui/DeleteIcon/DeleteIcon";
-import { Box } from "@mui/material";
+import DeleteIcon from "../../../../shared/ui/icons/DeleteIcon/DeleteIcon";
+import FavoriteButton from "../../../../shared/ui/icons/FavoriteIcon/FavoriteButton";
 
 function ProductItem({ id, title, price, image, onDelete, isAdmin }) {
   let cardImage = imageNotAvailable;
@@ -53,10 +54,22 @@ function ProductItem({ id, title, price, image, onDelete, isAdmin }) {
             textAlign: "center",
           }}
         />
+      
+        <Box
+          sx={{
+            position: "absolute",
+            left: 8,
+            top: 8,
+          }}
+        >
+          <FavoriteButton
+            isFavorite={true}
+            onToggle={() => console.log("favorite", id)}
+          />
+        </Box>
 
         <Box
           sx={{
-         
             "&:hover .MuiIconButton-root": {
               opacity: 1,
             },
@@ -76,7 +89,7 @@ function ProductItem({ id, title, price, image, onDelete, isAdmin }) {
               }}
               size="small"
             >
-              <DeleteIcon color="#ffffff"  />
+              <DeleteIcon color="#ffffff" />
             </IconButton>
           )}
         </Box>

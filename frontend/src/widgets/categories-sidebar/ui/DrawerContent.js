@@ -8,7 +8,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
-import DeleteIcon from "../../../shared/ui/DeleteIcon/DeleteIcon";
+import DeleteIcon from "../../../shared/ui/icons/DeleteIcon/DeleteIcon";
 import { useDeleteCategory } from "../../../features/delete-category/model/useDeleteCategory";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
