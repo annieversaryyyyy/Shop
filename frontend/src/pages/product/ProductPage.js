@@ -1,11 +1,6 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  deleteProductRequest,
-  fetchProductRequest,
-  resetDeleteProductState,
-} from "../../entities/product/model/productsActions";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
@@ -13,13 +8,13 @@ import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
-import { toast } from "react-toastify";
+import { fetchProductRequest } from "../../entities/product/model/productsActions";
 
 function Product() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const product = useSelector((state) => state.products.product);
-  const user = useSelector((state) => state.users.user);
+  
 
   useEffect(() => {
     dispatch(fetchProductRequest(id));

@@ -14,4 +14,7 @@ export const {
   logoutUserSuccess,
   logoutUserRequest,
   googleLoginRequest,
+  toggleFavoriteRequest,
+  toggleFavoriteSuccess,
+  toggleFavoriteFailure,
 } = usersSlice.actions;

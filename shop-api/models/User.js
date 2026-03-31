@@ -42,6 +42,12 @@ const UserSchema = new Schema({
   },
   facebookId: String,
   avatar: String,
+  favorites: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Product",
+    },
+  ],
 });
 
 UserSchema.pre("save", async function () {

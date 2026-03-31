@@ -9,7 +9,7 @@ function FavoriteButton({ isFavorite = false, onToggle }) {
         onToggle();
       }}
     >
-      <HeartIcon filled={isFavorite} />
+      <HeartIcon isFavorite={isFavorite} />
     </IconButton>
   );
 }

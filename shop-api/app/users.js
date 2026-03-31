@@ -3,6 +3,7 @@ const User = require("../models/User");
 const { OAuth2Client } = require("google-auth-library");
 const crypto = require("crypto");
 const config = require("../config");
+const auth = require("../middleware/auth");
 
 const client = new OAuth2Client(config.google.clientId);
 const router = express.Router();
@@ -88,5 +89,38 @@ router.delete("/sessions", async (req, res) => {
   await user.save();
   return res.send({ success, user });
 });
+
+router.post("/favorites", auth, async (req, res) => {
+  try {
+    if (!req.user) {
+      return res.status(401).send({ error: "Not authorized" });
+    }
+
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      return res.status(404).send({ error: "User not found" });
+    }
+
+    const { productId } = req.body;
+    const exists = user.favorites.some((id) => id.toString() === productId);
+    if (exists) {
+      user.favorites = user.favorites.filter(
+        (id) => id.toString() !== productId,
+      );
+    } else {
+      user.favorites.push(productId);
+    }
+
+    await user.save();
+    res.send({ favorites: user.favorites });
+  } catch (error) {
+    console.error("Error updating favorites:", error);
+    res.status(500).send({ error: "Internal server error" });
+  }
+});
+
+// router.get("/favorites", auth, async (req, res) => {
+
+
 
 module.exports = router;

@@ -14,6 +14,9 @@ import imageNotAvailable from "../../../../shared/assets/notAvailable.jpg";
 import { apiUrl } from "../../../../shared/config/config";
 import DeleteIcon from "../../../../shared/ui/icons/DeleteIcon/DeleteIcon";
 import FavoriteButton from "../../../../shared/ui/icons/FavoriteIcon/FavoriteButton";
+import { toggleFavoriteRequest } from "../../../user/model/usersActions";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 function ProductItem({ id, title, price, image, onDelete, isAdmin }) {
   let cardImage = imageNotAvailable;
@@ -21,6 +24,19 @@ function ProductItem({ id, title, price, image, onDelete, isAdmin }) {
   if (image) {
     cardImage = apiUrl + "/" + image;
   }
+  const dispatch = useDispatch();
+  const favorites = useSelector((state) => state.users.favorites);
+  const isFavorite = favorites.some((favId) => favId.toString() === id);
+  
+  const handleToggle = (productId) => {
+    dispatch(toggleFavoriteRequest(productId));
+    console.log("favorites:", favorites);
+    console.log("isFavorite:", isFavorite);
+  };
+
+  // useEffect(() => {
+  //   dispatch(fetchFavoriteRequest());
+  // },[]);
 
   return (
     <Grid item xs={12} lg={3} display="flex" justifyContent="center">
@@ -54,7 +70,7 @@ function ProductItem({ id, title, price, image, onDelete, isAdmin }) {
             textAlign: "center",
           }}
         />
-      
+
         <Box
           sx={{
             position: "absolute",
@@ -63,8 +79,9 @@ function ProductItem({ id, title, price, image, onDelete, isAdmin }) {
           }}
         >
           <FavoriteButton
-            isFavorite={true}
-            onToggle={() => console.log("favorite", id)}
+            isFavorite={isFavorite}
+            onToggle={() => handleToggle(id)}
+    
           />
         </Box>
 

@@ -1,4 +1,4 @@
-import { put, takeEvery } from "redux-saga/effects";
+import { put, takeEvery, select } from "redux-saga/effects";
 import baseApi from "../../../shared/api/baseApi";
 import {
   registerUserRequest,
@@ -10,6 +10,9 @@ import {
   logoutUserRequest,
   logoutUserSuccess,
   googleLoginRequest,
+  toggleFavoriteSuccess,
+  toggleFavoriteFailure,
+  toggleFavoriteRequest,
 } from "./usersActions";
 
 export function* registerUserSaga({ payload: userData }) {
@@ -51,10 +54,29 @@ export function* logoutUserSaga() {
   }
 }
 
+export function* toggleFavoriteSaga({ payload: productId }) {
+  try {
+    const user = yield select((state) => state.users.user);
+    const response = yield baseApi.post(
+      "/users/favorites",
+      { productId },
+      {
+        headers: {
+          Authorization: user.token,
+        },
+      },
+    );
+    yield put(toggleFavoriteSuccess(response.data.favorites));
+  } catch (error) {
+    yield put(toggleFavoriteFailure(error));
+  }
+}
+
 const userSagas = [
   takeEvery(registerUserRequest, registerUserSaga),
   takeEvery(loginUserRequest, loginUserSaga),
   takeEvery(logoutUserRequest, logoutUserSaga),
   takeEvery(googleLoginRequest, googleLoginSaga),
+  takeEvery(toggleFavoriteRequest, toggleFavoriteSaga),
 ];
 export default userSagas;

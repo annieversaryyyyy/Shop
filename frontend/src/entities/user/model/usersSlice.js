@@ -1,15 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toggleFavoriteFailure, toggleFavoriteSuccess } from "./usersActions";
 
 const name = "users";
 
 export const initialState = {
   user: null,
+  favorites: [],
   registerSuccess: false,
   registerLoading: false,
   registerError: null,
   loginSuccess: false,
   loginLoading: false,
   loginError: null,
+  toggleLoading: false,
+  toggleError: null,
 };
 
 const usersSlice = createSlice({
@@ -67,6 +71,19 @@ const usersSlice = createSlice({
     googleLoginRequest(state) {
       state.loginLoading = true;
       state.loginError = null;
+    },
+
+    toggleFavoriteRequest(state) {
+      state.toggleLoading = true;
+      state.toggleError = null;
+    },
+    toggleFavoriteSuccess(state, action) {
+      state.toggleLoading = false;
+      state.favorites = action.payload;
+    },
+    toggleFavoriteFailure(state, action) {
+      state.toggleLoading = false;
+      state.toggleError = action.payload;
     },
   },
 });
