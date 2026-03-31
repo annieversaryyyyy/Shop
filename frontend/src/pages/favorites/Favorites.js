@@ -21,7 +21,7 @@ function Favorites() {
     : [];
 
   return (
-    <Grid container spacing={3} sx={{ padding: "20px" }}>
+    <Grid container spacing={3} sx={{ padding: "20px", display: "flex", justifyContent: "center" }}>
       {favoriteProducts.length > 0 ? (
         favoriteProducts.map((product) => (
           <ProductItem

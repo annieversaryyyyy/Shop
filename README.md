@@ -14,7 +14,7 @@ Full-stack web application of a jewelry online store. The project allows users t
 - React
 - Redux Toolkit
 - Redux Saga
-- MUI (Material UI)
+- MUI 
 - HTML, CSS, SCSS
 
 ### Backend
@@ -85,6 +85,6 @@ npm start
 # Backend
 cd shop-api
 npm install
-npm run seed //fixtures
+npm run seed 
 npm run dev
 ```

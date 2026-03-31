@@ -9,8 +9,6 @@ import { initialState } from "../entities/user/model/usersSlice";
 const persistedState = loadFromLocalStorage();
 const sagaMiddleware = createSagaMiddleware();
 
-// const middleware = [thunk, sagaMiddleware];
-
 const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
@@ -27,6 +25,9 @@ store.subscribe(() => {
       ...initialState,
       user: store.getState().users.user,
       favorites: store.getState().users.favorites,
+    },
+    products: {
+      products: store.getState().products.products,
     },
   });
 });

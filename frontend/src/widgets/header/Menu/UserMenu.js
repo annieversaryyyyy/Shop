@@ -21,10 +21,15 @@ const UserMenu = ({ user }) => {
     setAnchorEl(null);
   };
 
-  const handleLogout = async () => {
-    await dispatch(logoutUserRequest());
+  const handleLogout = () => {
+    dispatch(logoutUserRequest());
     handleClose();
     navigate("/login");
+  };
+
+  const viewFavorites = () => {
+    handleClose();
+    navigate("/favorites");
   };
 
   return (
@@ -37,14 +42,14 @@ const UserMenu = ({ user }) => {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        {user.avatar && (
+        {user?.avatar && (
           <Avatar
             alt={user.displayName}
             src={user.avatar}
-            sx={{ width: 24, height: 24, marginRight: "5px" }}
+            sx={{ width: 24, height: 24, marginRight: 5 }}
           />
         )}
-        Hello, {user.displayName || user.email}!
+        Hello, {user?.displayName || user?.email}!
       </Button>
 
       <Menu
@@ -56,7 +61,7 @@ const UserMenu = ({ user }) => {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <MenuItem onClick={viewFavorites}>Favorites</MenuItem>
         <MenuItem onClick={handleClose}>My account</MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
