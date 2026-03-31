@@ -1,5 +1,3 @@
-import IconButton from "@mui/material/IconButton";
-
 const HeartIcon = ({ isFavorite, size = 24, color = "#fff" }) => {
   return isFavorite ? (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none">

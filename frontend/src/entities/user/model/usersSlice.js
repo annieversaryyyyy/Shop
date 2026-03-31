@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { toggleFavoriteFailure, toggleFavoriteSuccess } from "./usersActions";
 
 const name = "users";
 
@@ -82,6 +81,18 @@ const usersSlice = createSlice({
       state.favorites = action.payload;
     },
     toggleFavoriteFailure(state, action) {
+      state.toggleLoading = false;
+      state.toggleError = action.payload;
+    },
+    fetchFavoritesRequest(state) {
+      state.toggleLoading = true;
+      state.toggleError = null;
+    },
+    fetchFavoritesSuccess(state, action) {
+      state.toggleLoading = false;
+      state.favorites = action.payload;
+    },
+    fetchFavoritesFailure(state, action) {
       state.toggleLoading = false;
       state.toggleError = action.payload;
     },

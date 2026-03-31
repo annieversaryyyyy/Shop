@@ -26,6 +26,7 @@ store.subscribe(() => {
     users: {
       ...initialState,
       user: store.getState().users.user,
+      favorites: store.getState().users.favorites,
     },
   });
 });

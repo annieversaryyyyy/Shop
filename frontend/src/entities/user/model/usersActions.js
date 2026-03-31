@@ -17,4 +17,7 @@ export const {
   toggleFavoriteRequest,
   toggleFavoriteSuccess,
   toggleFavoriteFailure,
+  fetchFavoritesRequest,
+  fetchFavoritesSuccess,
+  fetchFavoritesFailure,
 } = usersSlice.actions;

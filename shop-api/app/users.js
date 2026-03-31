@@ -1,5 +1,6 @@
 const express = require("express");
 const User = require("../models/User");
+const Product = require("../models/Product");
 const { OAuth2Client } = require("google-auth-library");
 const crypto = require("crypto");
 const config = require("../config");
@@ -118,9 +119,18 @@ router.post("/favorites", auth, async (req, res) => {
     res.status(500).send({ error: "Internal server error" });
   }
 });
+router.get("/favorites", auth, async (req, res) => {
+  try {
+    if (!req.user) {
+      return res.status(401).send({ error: "Not authorized" });
+    }
 
-// router.get("/favorites", auth, async (req, res) => {
-
-
+    const favoritesIds = req.user.favorites || [];
+    res.send(favoritesIds);
+  } catch (error) {
+    console.error("Error fetching favorites:", error);
+    res.status(500).send({ error: "Internal server error" });
+  }
+});
 
 module.exports = router;
