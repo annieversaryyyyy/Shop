@@ -32,6 +32,11 @@ const UserMenu = ({ user }) => {
     navigate("/favorites");
   };
 
+  const viewAccount = () => {
+    handleClose();
+    navigate("/account");
+  }
+
   return (
     <div>
       <Button
@@ -62,7 +67,7 @@ const UserMenu = ({ user }) => {
         }}
       >
         <MenuItem onClick={viewFavorites}>Favorites</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
+        <MenuItem onClick={viewAccount}>My account</MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
     </div>

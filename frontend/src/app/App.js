@@ -15,6 +15,7 @@ import { googleClientId } from "../shared/config/config";
 import Favorites from "../pages/favorites/Favorites";
 import { fetchFavoritesRequest } from "../entities/user/model/usersActions";
 import { fetchProductsRequest } from "../entities/product/model/productsActions";
+import UserAccount from "../pages/user-account/UserAccount";
 
 function App() {
   const user = useSelector((state) => state.users.user);
@@ -46,7 +47,15 @@ function App() {
             <Route path="/products/:id" element={<Product />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/favorites" element={<Favorites />} />
+            <Route
+              path="/favorites"
+              element={
+                <ProtectedRoute isAllowed={!!user} redirectTo="/login">
+                  <Favorites />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/account" element={<UserAccount />} />
           </Routes>
         </MainLayout>
         <ToastContainer position="top-right" autoClose={3000} />
