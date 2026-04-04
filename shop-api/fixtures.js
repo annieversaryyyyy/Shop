@@ -55,6 +55,34 @@ const run = async () => {
       image: "fixtures/traibl.jpg",
       description: "Elegant silver earrings.",
     },
+    {
+      title: "Base",
+      price: 45,
+      category: ringsCategory._id,
+      image: "fixtures/base.jpg",
+      description: "Base silver ring.",
+    },
+    {
+      title: "Star",
+      price: 75,
+      category: ringsCategory._id,
+      image: "fixtures/star.jpg",
+      description: "Elegant silver ring.",
+    },
+    {
+      title: "Traibl",
+      price: 100,
+      category: earringsCategory._id,
+      image: "fixtures/traibl.jpg",
+      description: "Elegant silver earrings.",
+    },
+    {
+      title: "Base",
+      price: 45,
+      category: ringsCategory._id,
+      image: "fixtures/base.jpg",
+      description: "Base silver ring.",
+    },
   );
 
   await User.create(
