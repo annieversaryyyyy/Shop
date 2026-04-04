@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCartRequest } from "../../../cart/model/cartActions";
 import AddToCartButton from "../../../../shared/ui/icons/AddToCartButton/AddToCartButton";
 
+
 function ProductItem({ id, title, price, image, onDelete, isAdmin }) {
   let cardImage = imageNotAvailable;
 
@@ -45,6 +46,7 @@ function ProductItem({ id, title, price, image, onDelete, isAdmin }) {
   return (
     <Grid item xs={12} lg={3} display="flex" justifyContent="center">
       <Card
+        className="productItem"
         sx={{
           position: "relative",
           maxWidth: 420,

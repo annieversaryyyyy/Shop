@@ -3,9 +3,20 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CategoriesSidebar from "../../categories-sidebar/ui/CategoriesSidebar";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import { SplitText } from "gsap/all";
 
 const ProductsLayout = ({ children }) => {
   const user = useSelector((state) => state.users.user);
+
+  useGSAP(() => {
+    gsap.from(".title", {
+      y: 50,
+      opacity: 0,
+      duration: 1,
+    });
+  });
 
   return (
     <div className="productItem">
@@ -16,8 +27,9 @@ const ProductsLayout = ({ children }) => {
         alignItems="center"
         sx={{ paddingLeft: { sm: "240px" } }}
       >
-        <Grid item >
-          <Typography 
+        <Grid item>
+          <Typography
+            className="title"
             variant="h4"
             sx={{
               textAlign: "center",

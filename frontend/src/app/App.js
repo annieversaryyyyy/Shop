@@ -16,6 +16,7 @@ import Favorites from "../pages/favorites/Favorites";
 import { fetchFavoritesRequest } from "../entities/user/model/usersActions";
 import { fetchProductsRequest } from "../entities/product/model/productsActions";
 import UserAccount from "../pages/user-account/UserAccount";
+import MainPage from "../pages/main/MainPage";
 
 function App() {
   const user = useSelector((state) => state.users.user);
@@ -33,6 +34,8 @@ function App() {
         <MainLayout>
           <Routes>
             <Route path="/" element={<ProductsPage />} />
+            <Route path="/home" element={<MainPage />} />
+          
             <Route
               path="/products/new"
               element={

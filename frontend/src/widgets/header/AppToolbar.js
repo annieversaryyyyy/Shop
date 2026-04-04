@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import Anonymous from "./menu/Anonymous";
 import UserMenu from "./menu/UserMenu";
 import logo from "../../shared/assets/misticalogo.png";
-import './AppToolbar.css'
+import "./AppToolbar.css";
 
 function AppToolbar() {
   const user = useSelector((state) => state.users.user);
@@ -39,7 +39,7 @@ function AppToolbar() {
                 }}
               >
                 <Link to="/">
-                  <img src={logo}  alt="logo" className="logo"  />
+                  <img src={logo} alt="logo" className="logo" />
                 </Link>
               </Typography>
             </Grid>

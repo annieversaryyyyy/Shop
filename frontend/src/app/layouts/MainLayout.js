@@ -9,7 +9,7 @@ function MainLayout({ children }) {
       <CssBaseline />
       <AppToolbar />
       <main>
-        <Container maxWidth="xl">{children}</Container>
+        <Container maxWidth="xl" disableGutters>{children}</Container>
       </main>
     </>
   );
