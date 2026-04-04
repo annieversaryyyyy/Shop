@@ -7,7 +7,6 @@ const router = express.Router();
 
 router.post("/", auth, async (req, res) => {
   const { productId, quantity } = req.body;
-
   if (!productId || quantity < 1) {
     return res
       .status(400)
@@ -28,14 +27,14 @@ router.post("/", auth, async (req, res) => {
         items: [],
       });
     }
-
     const existingItem = cart.items.find(
-      (item) => item.product.toString() === productId,
+      (item) => item.product._id?.toString() === productId.toString(),
     );
+
     if (existingItem) {
-      existingItem.quantity += quantity;
+      existingItem.quantity += 1;
     } else {
-      cart.items.push({ product: productId, quantity });
+      cart.items.push({ product: productId, quantity: 1 });
     }
 
     await cart.save();

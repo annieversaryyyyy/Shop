@@ -14,20 +14,11 @@ import imageNotAvailable from "../../../../shared/assets/notAvailable.jpg";
 import { apiUrl } from "../../../../shared/config/config";
 import DeleteIcon from "../../../../shared/ui/icons/DeleteIcon/DeleteIcon";
 import FavoriteButton from "../../../../shared/ui/icons/FavoriteIcon/FavoriteButton";
-import {
-  toggleFavoriteRequest,
-} from "../../../user/model/usersActions";
+import { toggleFavoriteRequest } from "../../../user/model/usersActions";
 import { useDispatch, useSelector } from "react-redux";
+import { addToCartRequest } from "../../../cart/model/cartActions";
 
-
-function ProductItem({
-  id,
-  title,
-  price,
-  image,
-  onDelete,
-  isAdmin,
-}) {
+function ProductItem({ id, title, price, image, onDelete, isAdmin }) {
   let cardImage = imageNotAvailable;
 
   if (image) {
@@ -39,6 +30,15 @@ function ProductItem({
 
   const handleToggle = (productId) => {
     dispatch(toggleFavoriteRequest(productId));
+  };
+
+  const handleAddToCart =()=> {
+    dispatch(
+      addToCartRequest({
+        productId: id,
+        quantity: 1,
+      }),
+    );
   };
 
   return (
@@ -86,6 +86,10 @@ function ProductItem({
             isFavorite={isFavorite}
             onToggle={() => handleToggle(id)}
           />
+        </Box>
+
+        <Box>
+          <button onClick={handleAddToCart}>Add to cart</button>
         </Box>
 
         <Box

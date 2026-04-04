@@ -29,6 +29,9 @@ store.subscribe(() => {
     products: {
       products: store.getState().products.products,
     },
+    cart: {
+      items: store.getState().cart.items,
+    }
   });
 });
 
