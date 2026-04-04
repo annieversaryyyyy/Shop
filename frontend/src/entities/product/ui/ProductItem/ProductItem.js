@@ -17,6 +17,7 @@ import FavoriteButton from "../../../../shared/ui/icons/FavoriteIcon/FavoriteBut
 import { toggleFavoriteRequest } from "../../../user/model/usersActions";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCartRequest } from "../../../cart/model/cartActions";
+import AddToCartButton from "../../../../shared/ui/icons/AddToCartButton/AddToCartButton";
 
 function ProductItem({ id, title, price, image, onDelete, isAdmin }) {
   let cardImage = imageNotAvailable;
@@ -32,7 +33,7 @@ function ProductItem({ id, title, price, image, onDelete, isAdmin }) {
     dispatch(toggleFavoriteRequest(productId));
   };
 
-  const handleAddToCart =()=> {
+  const handleAddToCart = () => {
     dispatch(
       addToCartRequest({
         productId: id,
@@ -88,8 +89,14 @@ function ProductItem({ id, title, price, image, onDelete, isAdmin }) {
           />
         </Box>
 
-        <Box>
-          <button onClick={handleAddToCart}>Add to cart</button>
+        <Box
+          sx={{
+            position: "absolute",
+            right: 8,
+            top: 8,
+          }}
+        >
+          <AddToCartButton id={id} handleAddToCart={handleAddToCart} />
         </Box>
 
         <Box

@@ -1,4 +1,4 @@
-const HeartIcon = ({ isFavorite, size = 24, color = "#fff" }) => {
+const HeartIcon = ({ isFavorite, size = 24, color = "#710000" }) => {
   return isFavorite ? (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
       <path

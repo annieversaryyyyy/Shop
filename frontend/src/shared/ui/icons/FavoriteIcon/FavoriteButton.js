@@ -10,7 +10,8 @@ function FavoriteButton({ isFavorite = false, onToggle }) {
       }}
       sx={{
         padding: "8px",
-        backgroundColor: "rgba(215, 201, 201, 0.5)",
+        backdropFilter: "blur(6px)",
+        backgroundColor: "rgba(255,255,255,0.6)",
         borderRadius: "50%",
         transition: "all 0.2s ease",
         "&:hover": {
