@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const products = require("./app/products");
 const categories = require("./app/categories");
 const users = require("./app/users");
+const cart = require("./app/cart");
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(express.static("public"));
 app.use("/products", products);
 app.use("/categories", categories);
 app.use("/users", users);
+app.use("/cart", cart);
 
 app.get("/", (req, res) => {
   res.send("API working");

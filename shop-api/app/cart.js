@@ -1,10 +1,11 @@
 const express = require("express");
 const auth = require("../middleware/auth");
 const Cart = require("../models/Cart");
+const Product = require("../models/Product");
 
 const router = express.Router();
 
-router.post("/cart", auth, async (req, res) => {
+router.post("/", auth, async (req, res) => {
   const { productId, quantity } = req.body;
 
   if (!productId || quantity < 1) {
@@ -14,13 +15,33 @@ router.post("/cart", auth, async (req, res) => {
   }
 
   try {
-    const cartData = {
-      user: req.user._id,
-      items: [{ product: productId, quantity }],
-    };
+    const product = await Product.findById(productId);
+    if (!product) {
+      return res.status(404).send({ error: "Product not found" });
+    }
 
-    const cart = await Cart.create(cartData);
-    res.status(201).send(cart);
+    let cart = await Cart.findOne({ user: req.user._id });
+
+    if (!cart) {
+      cart = new Cart({
+        user: req.user._id,
+        items: [],
+      });
+    }
+
+    const existingItem = cart.items.find(
+      (item) => item.product.toString() === productId,
+    );
+    if (existingItem) {
+      existingItem.quantity += quantity;
+    } else {
+      cart.items.push({ product: productId, quantity });
+    }
+
+    await cart.save();
+    await cart.populate("items.product");
+
+    res.send(cart);
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
