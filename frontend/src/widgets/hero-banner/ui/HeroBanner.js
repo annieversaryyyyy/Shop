@@ -36,7 +36,6 @@ function HeroBanner() {
   });
   return (
     <Box
-      className="mainRoot"
       sx={{ height: "100vh", position: "relative", overflow: "hidden" }}
     >
       <AppToolbar />

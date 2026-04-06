@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Product from "../pages/product/ProductPage";
 import Register from "../pages/register/RegisterPage";
 import Login from "../pages/login/LoginPage";
-import ProductsPage from "../pages/home/ProductsPage";
+import ProductsPage from "../pages/catalog/ProductsPage";
 import NewProduct from "../pages/new-product/NewProductPage";
 import MainLayout from "./layouts/MainLayout";
 import ProtectedRoute from "./routes/ProtectedRoute";
@@ -34,7 +34,7 @@ function App() {
         <MainLayout>
           <Routes>
             <Route path="/" element={<ProductsPage />} />
-            <Route path="/home" element={<MainPage />} />
+            <Route path="/home-test" element={<MainPage />} /> {/* in process */}
           
             <Route
               path="/products/new"

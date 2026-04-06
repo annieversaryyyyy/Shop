@@ -1,3 +1,14 @@
-.mainRoot{
-    background-color: black !important;
+.mainRoot {
+  position: relative;
+  /* background-color: #000; */
+  overflow: hidden;
+}
+
+.mainRoot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../../shared//assets/noise.jpg"); 
+  opacity: 1;
+  pointer-events: none;
 }
