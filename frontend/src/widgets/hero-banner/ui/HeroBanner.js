@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
-import AppToolbar from "../../../widgets/header/AppToolbar";
 import ring from "../../../shared/assets/mainRing.PNG";
+import ViewCanvas from "./ViewCanvas";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -34,12 +34,9 @@ function HeroBanner() {
       ease: "power2.out",
     });
   });
-  return (
-    <Box
-      sx={{ height: "100vh", position: "relative", overflow: "hidden" }}
-    >
-      <AppToolbar />
 
+  return (
+    <Box sx={{ height: "100vh", position: "relative", overflow: "hidden" }}>
       <Typography
         variant="h1"
         className="heroTitle"
@@ -71,6 +68,7 @@ function HeroBanner() {
           letterSpacing: "3px",
           textAlign: "center",
           whiteSpace: "pre-line",
+          maxWidth: { xs: "72%", sm: "42%" },
         }}
       >
         {"Discover unique jewelry\ncrafted with soul"}
@@ -79,17 +77,19 @@ function HeroBanner() {
       <Box
         component="img"
         src={ring}
-        alt="ring"
+        alt=""
         className="ring"
         sx={{
           position: "absolute",
           bottom: "50px",
           left: "50%",
           transform: "translateX(-50%)",
-          width: "450px",
+          width: { xs: "280px", md: "450px" },
           zIndex: 2,
         }}
       />
+
+     
     </Box>
   );
 }

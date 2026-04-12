@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import img1 from "../../../shared/assets/aboutImage1.JPG";
 import img2 from "../../../shared/assets/aboutImage2.JPG";
 import { SplitText } from "gsap/all";
+import ViewCanvas from "../../hero-banner/ui/ViewCanvas";
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
@@ -31,7 +32,6 @@ function AboutUs() {
         },
       },
     );
-   
   }, []);
 
   return (
@@ -43,7 +43,7 @@ function AboutUs() {
         gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
         gap: 4,
         alignItems: "center",
-        padding: "50px 100px",
+        padding: "50px 160px",
         marginTop: -10,
       }}
     >
@@ -72,6 +72,22 @@ function AboutUs() {
           reflection of identity, emotion, and inner strength.
         </Typography>
       </Box>
+{/* 
+      <Box
+        aria-hidden
+        sx={{
+          position: "absolute",
+          left: "500px",
+          top: "50%",
+          transform: "translateY(-50%)",
+          width: { xs: "220px", sm: "500px" },
+          height: { xs: "300px", sm: "600px" },
+          zIndex: 3,
+          pointerEvents: "none",
+        }}
+      >
+        <ViewCanvas />
+      </Box> */}
 
       <Box
         className="aboutImg"
@@ -86,7 +102,7 @@ function AboutUs() {
           src={img1}
           sx={{
             position: "absolute",
-            bottom: "100px",
+            bottom: "50px",
             right: 0,
             width: "50%",
             borderRadius: 3,
@@ -98,7 +114,7 @@ function AboutUs() {
           src={img2}
           sx={{
             position: "absolute",
-            bottom: "50px",
+            bottom: "10px",
             right: "45%",
             width: "40%",
             borderRadius: 3,
