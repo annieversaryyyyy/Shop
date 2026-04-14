@@ -27,13 +27,16 @@ const productsSlice = createSlice({
     },
     fetchProductsRequest: (state) => {
       state.fetchLoading = true;
+      state.fetchError = null;
     },
     fetchProductsSuccess: (state, { payload: products }) => {
       state.fetchLoading = false;
+      state.fetchError = null;
       state.products = products;
     },
-    fetchProductsFailure: (state) => {
+    fetchProductsFailure: (state, { payload: message }) => {
       state.fetchLoading = false;
+      state.fetchError = message ?? "Failed to load products";
     },
     createProductRequest: (state) => {
       state.createProductLoading = true;

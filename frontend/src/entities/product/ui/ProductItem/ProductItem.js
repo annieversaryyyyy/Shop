@@ -19,7 +19,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCartRequest } from "../../../cart/model/cartActions";
 import AddToCartButton from "../../../../shared/ui/icons/AddToCartButton/AddToCartButton";
 
-
 function ProductItem({ id, title, price, image, onDelete, isAdmin }) {
   let cardImage = imageNotAvailable;
 
@@ -115,14 +114,23 @@ function ProductItem({ id, title, price, image, onDelete, isAdmin }) {
               sx={{
                 position: "absolute",
                 right: 8,
-                top: 8,
+                bottom: 250,
                 transform: "none",
                 padding: "4px",
                 opacity: 0,
+                padding: "8px",
+                backdropFilter: "blur(6px)",
+                backgroundColor: "rgba(255,255,255,0.6)",
+                borderRadius: "50%",
+                transition: "all 0.2s ease",
+                "&:hover": {
+                  backgroundColor: "rgba(235, 235, 235, 0.8)",
+                  transform: "scale(1.15)",
+                },
               }}
               size="small"
             >
-              <DeleteIcon color="#ffffff" />
+              <DeleteIcon color="#000000" />
             </IconButton>
           )}
         </Box>

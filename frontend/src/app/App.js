@@ -33,8 +33,8 @@ function App() {
       <GoogleOAuthProvider clientId={googleClientId}>
         <MainLayout>
           <Routes>
-            <Route path="/" element={<ProductsPage />} />
-            <Route path="/home-test" element={<MainPage />} /> {/* in process */}
+            <Route path="/products" element={<ProductsPage />} />
+            <Route path="/" element={<MainPage />} /> 
           
             <Route
               path="/products/new"
