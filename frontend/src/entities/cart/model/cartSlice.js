@@ -21,6 +21,9 @@ const cartSlice = createSlice({
       state.addToCartLoading = false;
       state.addToCartError = payload;
     },
+    clearCart(state) {
+      state.items = [];
+    },
   },
 });
 

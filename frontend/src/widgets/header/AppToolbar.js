@@ -43,14 +43,16 @@ function AppToolbar() {
                   <img src={logo} alt="logo" className="logo" />
                 </Link>
               </Typography>
-                  <CartButton />
             </Grid>
 
-            <Grid item> {user ? <UserMenu user={user} /> : <Anonymous />}</Grid>
+            <Grid item sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+              <CartButton />
+              {user ? <UserMenu user={user} /> : <Anonymous />}
+            </Grid>
           </Grid>
         </Toolbar>
       </AppBar>
-  
+
       <Toolbar />
     </>
   );

@@ -6,6 +6,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { logoutUserRequest } from "../../../entities/user/model/usersActions";
 import { useNavigate } from "react-router-dom";
 import { Avatar } from "@mui/material";
+import { clearCart } from "../../../entities/cart/model/cartActions";
 
 const UserMenu = ({ user }) => {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const UserMenu = ({ user }) => {
 
   const handleLogout = () => {
     dispatch(logoutUserRequest());
+    dispatch(clearCart());
     handleClose();
     navigate("/login");
   };
@@ -35,7 +37,7 @@ const UserMenu = ({ user }) => {
   const viewAccount = () => {
     handleClose();
     navigate("/account");
-  }
+  };
 
   return (
     <div>
