@@ -8,6 +8,7 @@ import Anonymous from "./menu/Anonymous";
 import UserMenu from "./menu/UserMenu";
 import logo from "../../shared/assets/misticalogo.png";
 import "./AppToolbar.css";
+import CartButton from "../../features/cart/CartButton";
 
 function AppToolbar() {
   const user = useSelector((state) => state.users.user);
@@ -42,12 +43,14 @@ function AppToolbar() {
                   <img src={logo} alt="logo" className="logo" />
                 </Link>
               </Typography>
+                  <CartButton />
             </Grid>
 
             <Grid item> {user ? <UserMenu user={user} /> : <Anonymous />}</Grid>
           </Grid>
         </Toolbar>
       </AppBar>
+  
       <Toolbar />
     </>
   );

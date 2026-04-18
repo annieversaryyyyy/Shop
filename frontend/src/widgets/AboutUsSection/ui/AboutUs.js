@@ -8,6 +8,7 @@ import img2 from "../../../shared/assets/aboutImage2.JPG";
 import { SplitText } from "gsap/all";
 import ViewCanvas from "../../hero-banner/ui/ViewCanvas";
 
+
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
 function AboutUs() {
@@ -72,7 +73,7 @@ function AboutUs() {
           reflection of identity, emotion, and inner strength.
         </Typography>
       </Box>
-{/* 
+      {/* 
       <Box
         aria-hidden
         sx={{

@@ -27,6 +27,7 @@ function ProductItem({ id, title, price, image, onDelete, isAdmin }) {
   }
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.users.favorites);
+  const user = useSelector((state) => state.users.user);
   const isFavorite = favorites.some((favId) => favId.toString() === id);
 
   const handleToggle = (productId) => {
@@ -75,31 +76,33 @@ function ProductItem({ id, title, price, image, onDelete, isAdmin }) {
             textAlign: "center",
           }}
         />
+        {user && (
+          <>
+            <Box
+              sx={{
+                position: "absolute",
+                left: 8,
+                top: 8,
+                zIndex: 10,
+              }}
+            >
+              <FavoriteButton
+                isFavorite={isFavorite}
+                onToggle={() => handleToggle(id)}
+              />
+            </Box>
 
-        <Box
-          sx={{
-            position: "absolute",
-            left: 8,
-            top: 8,
-            zIndex: 10,
-          }}
-        >
-          <FavoriteButton
-            isFavorite={isFavorite}
-            onToggle={() => handleToggle(id)}
-          />
-        </Box>
-
-        <Box
-          sx={{
-            position: "absolute",
-            right: 8,
-            top: 8,
-          }}
-        >
-          <AddToCartButton id={id} handleAddToCart={handleAddToCart} />
-        </Box>
-
+            <Box
+              sx={{
+                position: "absolute",
+                right: 8,
+                top: 8,
+              }}
+            >
+              <AddToCartButton id={id} handleAddToCart={handleAddToCart} />
+            </Box>
+          </>
+        )}
         <Box
           sx={{
             "&:hover .MuiIconButton-root": {
