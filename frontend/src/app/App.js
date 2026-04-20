@@ -17,6 +17,7 @@ import { fetchFavoritesRequest } from "../entities/user/model/usersActions";
 import { fetchProductsRequest } from "../entities/product/model/productsActions";
 import UserAccount from "../pages/user-account/UserAccount";
 import MainPage from "../pages/main/MainPage";
+import Cart from "../pages/cart/Cart";
 
 function App() {
   const user = useSelector((state) => state.users.user);
@@ -34,8 +35,21 @@ function App() {
         <MainLayout>
           <Routes>
             <Route path="/products" element={<ProductsPage />} />
-            <Route path="/" element={<MainPage />} /> 
-          
+            <Route path="/" element={<MainPage />} />
+            <Route path="/products/:id" element={<Product />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/account" element={<UserAccount />} />
+
+            <Route
+              path="/cart"
+              element={
+                <ProtectedRoute isAllowed={!!user} redirectTo="/">
+                  <Cart />
+                </ProtectedRoute>
+              }
+            />
+
             <Route
               path="/products/new"
               element={
@@ -47,9 +61,6 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="/products/:id" element={<Product />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
             <Route
               path="/favorites"
               element={
@@ -58,7 +69,6 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="/account" element={<UserAccount />} />
           </Routes>
         </MainLayout>
         <ToastContainer position="top-right" autoClose={3000} />

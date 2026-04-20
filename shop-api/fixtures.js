@@ -1,16 +1,20 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
 const config = require("./config");
+const crypto = require("crypto");
 
 const User = require("./models/User");
 const Category = require("./models/Category");
 const Product = require("./models/Product");
 
 const run = async () => {
-  await mongoose.connect(config.mongo.db);
+  // await mongoose.connect(config.mongo.db);
+  await mongoose.connect(process.env.MONGO_URL);
 
   const collections = await mongoose.connection.db.listCollections().toArray();
 
   for (const coll of collections) {
+    console.log("Collections:", collections);
     await mongoose.connection.db.dropCollection(coll.name);
   }
 

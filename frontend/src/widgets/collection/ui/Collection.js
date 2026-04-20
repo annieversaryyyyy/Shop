@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ViewCanvas from "../../hero-banner/ui/ViewCanvas";
 
 const PREVIEW_COUNT = 3;
 
@@ -59,6 +60,7 @@ function Collection() {
       ref={sectionRef}
       aria-labelledby="collection-heading"
       sx={{
+        position: "relative",
         py: { xs: 4, md: 6 },
         px: { xs: 2, sm: 3, md: 6 },
       }}
@@ -70,6 +72,7 @@ function Collection() {
           alignItems: { xs: "flex-start", sm: "center" },
           justifyContent: "space-between",
           gap: 2,
+          marginTop: 20,
           mb: 4,
         }}
       >
@@ -139,6 +142,22 @@ function Collection() {
           ))}
         </Grid>
       )}
+    
+      <Box
+        aria-hidden
+        sx={{
+          position: "absolute",
+          left: "35%",
+          top: "10%",
+          transform: "translateY(-50%)",
+          width: { xs: "220px", sm: "500px" },
+          height: { xs: "300px", sm: "600px" },
+          zIndex: 3,
+          pointerEvents: "none",
+        }}
+      >
+        <ViewCanvas />
+      </Box>
     </Box>
   );
 }

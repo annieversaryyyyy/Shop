@@ -6,8 +6,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import img1 from "../../../shared/assets/aboutImage1.JPG";
 import img2 from "../../../shared/assets/aboutImage2.JPG";
 import { SplitText } from "gsap/all";
-import ViewCanvas from "../../hero-banner/ui/ViewCanvas";
-
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
@@ -73,22 +71,8 @@ function AboutUs() {
           reflection of identity, emotion, and inner strength.
         </Typography>
       </Box>
-      {/* 
-      <Box
-        aria-hidden
-        sx={{
-          position: "absolute",
-          left: "500px",
-          top: "50%",
-          transform: "translateY(-50%)",
-          width: { xs: "220px", sm: "500px" },
-          height: { xs: "300px", sm: "600px" },
-          zIndex: 3,
-          pointerEvents: "none",
-        }}
-      >
-        <ViewCanvas />
-      </Box> */}
+      
+   
 
       <Box
         className="aboutImg"

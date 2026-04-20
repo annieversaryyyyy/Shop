@@ -2,11 +2,11 @@ const path = require("path");
 
 const rootPath = __dirname;
 
-let dbUrl = "mongodb://localhost/shop";
-let port = 8000;
+let dbUrl = process.env.MONGO_URL;
+let port = process.env.PORT || 8000;
 
 if (process.env.NODE_ENV === "test") {
-  dbUrl = "mongodb://localhost/shop-test";
+  dbUrl = process.env.MONGO_URL;
   port = 8010;
 }
 

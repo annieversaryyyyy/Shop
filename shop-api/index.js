@@ -30,8 +30,13 @@ const run = async () => {
     .then(() => {
       console.log("MongoDB connected");
 
-      app.listen(config.port, () => {
-        console.log("Server started on port " + config.port);
+      // app.listen(config.port, () => {
+      //   console.log("Server started on port " + config.port);
+      // });
+      const PORT = process.env.PORT || config.port || 3000;
+
+      app.listen(PORT, () => {
+        console.log("Server started on port " + PORT);
       });
     })
     .catch((err) => {
